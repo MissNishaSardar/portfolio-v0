@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import ThemeToggleButton from "../ThemeToggleButton";
+import { usePathname } from "next/navigation";
+
+import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { navLinks } from "@/data/portfolio";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header
       className="fixed right-0 left-0 border-b shadow"
@@ -11,12 +19,31 @@ const Header = () => {
           <h1
             className="text-2xl font-semibold"
             aria-label="App Name">
-            NSP App
+            『NS』
           </h1>
         </Link>
 
         <nav className="flex items-center gap-4">
-          <Link href={"/"}>Home</Link>
+          {navLinks
+            .filter(({ href }) => href !== "/")
+            .map(({ label, href }) => {
+              const isActive = pathname === href;
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "text-sm transition-colors hover:text-foreground",
+                    isActive
+                      ? "font-medium text-foreground"
+                      : "text-muted-foreground"
+                  )}>
+                  {label}
+                </Link>
+              );
+            })}
 
           <ThemeToggleButton />
         </nav>

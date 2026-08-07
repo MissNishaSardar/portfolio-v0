@@ -1,5 +1,7 @@
+import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
+import { Spotlight } from "@/components/ui/spotlight-new";
 import { geistMono, geistSans } from "@/lib/fonts";
 import { ReactNode } from "react";
 import "./globals.css";
@@ -19,9 +21,17 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
           attribute={"class"}
           defaultTheme="dark"
           enableSystem={false}>
-          <Header />
+          <div className="relative flex min-h-dvh flex-col overflow-hidden">
+            <Spotlight />
 
-          <main className="mx-auto max-w-7xl px-6 py-3">{children}</main>
+            <Header />
+
+            <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6">
+              {children}
+            </main>
+
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
