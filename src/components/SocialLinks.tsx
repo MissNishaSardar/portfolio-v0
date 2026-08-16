@@ -32,6 +32,8 @@ const LinkedinIcon = ({ size = 20, className }: IconProps) => (
   </svg>
 );
 
+export { GithubIcon, LinkedinIcon };
+
 const iconMap: Record<SocialIcon, (props: IconProps) => React.ReactNode> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
@@ -56,7 +58,7 @@ const SocialLinks = ({ links = socials, className }: SocialLinksProps) => {
             aria-label={label}
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground transition-colors hover:text-foreground">
+            className="text-muted-foreground hover:text-foreground transition-colors">
             <Icon size={20} />
           </a>
         );

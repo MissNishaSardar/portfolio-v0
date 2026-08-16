@@ -4,8 +4,8 @@ import SkillsPage from "@/components/pages/SkillsPage/SkillsPage";
 import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: `Skills — ${profile.name}`,
-  description: "The technologies and tools I work with.",
+  title: `About — ${profile.name}`,
+  description: "About me and the technologies I work with.",
 };
 
 const page = () => {

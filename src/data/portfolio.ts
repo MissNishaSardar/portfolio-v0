@@ -14,6 +14,7 @@ export type SkillCategory = {
   title: string;
   icon: SkillIcon;
   skills: string[];
+  accent: string;
 };
 
 export type Project = {
@@ -30,15 +31,16 @@ export const profile = {
   name: "Nisha Sardar",
   role: "Full-Stack Developer",
   tagline: "Building fast, accessible, and delightful web experiences.",
-  bio: "I turn ideas into functional, production-ready web applications. Driven by curiosity and a hands-on approach to modern technology. I specialize in full-stack web development using Next.js, React, Node.js, and relational databases. I thrive on the full lifecycle of a feature—from designing interactive dashboards and handling authentication flows to optimizing database queries. I'm dedicated to clean code, continuous growth, and creating digital products that deliver real value.",
-  email: "nisha@example.com",
+  bio: "I'm a full-stack developer specializing in modern web technologies like Next.js, React, and Node.js.\n\nMy philosophy is simple: write clean, maintainable code and design interfaces that feel intuitive and fast. I bridge the gap between backend logic and frontend aesthetics to deliver seamless digital products from concept to deployment.",
+  email: "missnishasardar@gmail.com",
   location: "India",
 };
 
 export const navLinks: { label: string; href: Route }[] = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Skills", href: "/skills" },
+
   { label: "Contact", href: "/contact" },
 ];
 
@@ -50,12 +52,12 @@ export const socials: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/MissNishaSardar",
+    href: "https://www.linkedin.com/in/nisha-sardar/",
     icon: "linkedin",
   },
   {
     label: "Email",
-    href: "mailto:nisha@example.com",
+    href: "mailto:missnishasardar@gmail.com",
     icon: "mail",
   },
 ];
@@ -64,17 +66,29 @@ export const skills: SkillCategory[] = [
   {
     title: "Frontend",
     icon: "code",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML & CSS"],
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Bootstrap",
+      "shadcn/ui",
+      "Jotai",
+      "Zod",
+    ],
+    accent: "from-sky-500 to-indigo-600",
   },
   {
     title: "Backend",
     icon: "server",
-    skills: ["Node.js", "PostgreSQL", "Prisma", "REST APIs"],
+    skills: ["Node.js", "PostgreSQL", "SQLite", "Prisma", "REST APIs"],
+    accent: "from-emerald-500 to-teal-600",
   },
   {
     title: "Tools",
     icon: "wrench",
-    skills: ["Git", "Docker", "CI/CD", "Figma"],
+    skills: ["Git", "GitHub", "Figma", "ESLint & Prettier"],
+    accent: "from-violet-500 to-fuchsia-600",
   },
 ];
 
