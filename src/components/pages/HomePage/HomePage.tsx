@@ -1,6 +1,7 @@
 import { ArrowRight, Mail } from "lucide-react";
 import Link from "next/link";
 
+import { Button } from "@/components/shadcnui/button";
 import { profile } from "@/data/portfolio";
 
 const HomePage = () => {
@@ -25,18 +26,26 @@ const HomePage = () => {
         </p>
 
         <div className="flex items-center gap-3 pt-2">
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-medium text-black transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(45,212,191,0.35)]">
+          <Button
+            render={<Link href="/projects" />}
+            nativeButton={false}
+            size="lg"
+            className="group gap-3 rounded-full px-8 py-6 text-lg shadow-md hover:shadow-lg">
             View Projects
-            <ArrowRight className="size-5 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-          <Link
-            href="/contact"
-            className="text-foreground inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-lg font-medium backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-white/10">
-            <Mail className="size-5" />
+            <ArrowRight
+              data-icon="inline-end"
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </Button>
+          <Button
+            render={<Link href="/contact" />}
+            nativeButton={false}
+            variant="outline"
+            size="lg"
+            className="border-glass-border bg-glass hover:bg-glass gap-3 rounded-full px-8 py-6 text-lg backdrop-blur-md">
+            <Mail data-icon="inline-start" />
             Get in Touch
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

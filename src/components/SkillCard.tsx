@@ -78,7 +78,7 @@ const SkillCard = ({ category, index = 0 }: SkillCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
       className="group relative h-full">
-      <Card className="relative h-full border border-white/10 bg-white/5 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-1 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.08)]">
+      <Card className="border-glass-border bg-glass ring-glass-ring relative h-full border shadow-[var(--glass-shadow)] ring-1 backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-1 group-hover:shadow-[var(--glass-shadow-hover)]">
         <CardHeader>
           <CardTitle className="flex items-center justify-between gap-2">
             <span className="flex items-center gap-3">
@@ -104,7 +104,7 @@ const SkillCard = ({ category, index = 0 }: SkillCardProps) => {
 
               return (
                 <li key={skill}>
-                  <span className="group/skill text-muted-foreground hover:text-foreground inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:border-white/20 hover:bg-white/10 hover:shadow-md">
+                  <span className="group/skill text-muted-foreground hover:text-foreground border-glass-border bg-glass-pill hover:bg-glass hover:border-glass-border inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm shadow-sm backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:shadow-md">
                     <SkillIcon
                       className={cn(
                         "text-muted-foreground size-4 opacity-50 grayscale transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/skill:opacity-100 group-hover/skill:grayscale-0",
