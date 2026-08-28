@@ -1,15 +1,15 @@
 import { Metadata } from "next";
 
-import SkillsPage from "@/components/pages/SkillsPage/SkillsPage";
+import AboutPage from "@/components/pages/AboutPage/AboutPage";
 import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: `About — ${profile.name}`,
-  description: "About me and the technologies I work with.",
+  description: "About me",
 };
 
 const page = () => {
-  return <SkillsPage />;
+  return <AboutPage />;
 };
 
 export default page;

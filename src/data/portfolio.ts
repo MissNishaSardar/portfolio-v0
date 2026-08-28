@@ -39,6 +39,7 @@ export const profile = {
 export const navLinks: { label: string; href: Route }[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
 
   { label: "Contact", href: "/contact" },
@@ -54,6 +55,11 @@ export const socials: SocialLink[] = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/nisha-sardar/",
     icon: "linkedin",
+  },
+  {
+    label: "Email",
+    href: `mailto:${profile.email}`,
+    icon: "mail",
   },
 ];
 

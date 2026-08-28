@@ -1,24 +1,6 @@
 "use client";
 
-import {
-  Atom,
-  Boxes,
-  Braces,
-  Code2,
-  Component,
-  Database,
-  GitBranch,
-  GitFork,
-  Layers,
-  PenTool,
-  Plug,
-  Server,
-  ShieldCheck,
-  Wind,
-  Workflow,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
+import { Code2, Database, Server, Wrench } from "lucide-react";
 import { motion } from "motion/react";
 
 import { Badge } from "@/components/shadcnui/badge";
@@ -29,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/shadcnui/card";
 import { SkillCategory, SkillIcon } from "@/data/portfolio";
+import { defaultSkillMeta, skillJokes, skillMeta } from "@/lib/skillsMeta";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<SkillIcon, typeof Code2> = {
@@ -37,32 +20,6 @@ const iconMap: Record<SkillIcon, typeof Code2> = {
   database: Database,
   wrench: Wrench,
 };
-
-const skillMeta: Record<string, { icon: LucideIcon; color: string }> = {
-  React: { icon: Atom, color: "group-hover/skill:text-sky-500" },
-  "Next.js": { icon: Boxes, color: "group-hover/skill:text-foreground" },
-  TypeScript: { icon: Braces, color: "group-hover/skill:text-blue-600" },
-  "Tailwind CSS": { icon: Wind, color: "group-hover/skill:text-cyan-500" },
-  Bootstrap: { icon: Boxes, color: "group-hover/skill:text-purple-500" },
-  "shadcn/ui": { icon: Component, color: "group-hover/skill:text-foreground" },
-  Jotai: { icon: Atom, color: "group-hover/skill:text-rose-500" },
-  Zod: { icon: ShieldCheck, color: "group-hover/skill:text-sky-600" },
-  "Node.js": { icon: Server, color: "group-hover/skill:text-emerald-500" },
-  PostgreSQL: { icon: Database, color: "group-hover/skill:text-sky-700" },
-  SQLite: { icon: Database, color: "group-hover/skill:text-blue-400" },
-  Prisma: { icon: Layers, color: "group-hover/skill:text-teal-500" },
-  "REST APIs": { icon: Plug, color: "group-hover/skill:text-amber-500" },
-  Git: { icon: GitBranch, color: "group-hover/skill:text-orange-600" },
-  GitHub: { icon: GitFork, color: "group-hover/skill:text-foreground" },
-  "CI/CD": { icon: Workflow, color: "group-hover/skill:text-emerald-500" },
-  Figma: { icon: PenTool, color: "group-hover/skill:text-pink-500" },
-  "ESLint & Prettier": {
-    icon: Braces,
-    color: "group-hover/skill:text-violet-500",
-  },
-};
-
-const defaultMeta = { icon: Code2, color: "group-hover/skill:text-primary" };
 
 type SkillCardProps = {
   category: SkillCategory;
@@ -98,21 +55,52 @@ const SkillCard = ({ category, index = 0 }: SkillCardProps) => {
 
         <CardContent>
           <ul className="flex flex-wrap gap-3">
-            {category.skills.map((skill) => {
+            {category.skills.map((skill, skillIndex) => {
               const { icon: SkillIcon, color } =
-                skillMeta[skill] ?? defaultMeta;
+                skillMeta[skill] ?? defaultSkillMeta;
+              const joke =
+                skillJokes[skill] ?? "Makes the web go brrr \uD83D\uDE80";
+              const rotation =
+                skillIndex % 3 === 0 ?
+                  "rotate-[-2deg] group-hover:rotate-[-1deg]"
+                : skillIndex % 3 === 1 ?
+                  "rotate-[1.5deg] group-hover:rotate-[0.5deg]"
+                : "rotate-[-1deg] group-hover:rotate-[1deg]";
 
               return (
-                <li key={skill}>
-                  <span className="group/skill text-muted-foreground hover:text-foreground border-glass-border bg-glass-pill hover:bg-glass hover:border-glass-border inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm shadow-sm backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:shadow-md">
+                <li
+                  key={skill}
+                  className="group/pill relative">
+                  <span className="group/skill text-muted-foreground hover:text-foreground border-glass-border bg-glass-pill hover:bg-glass hover:border-glass-border inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-[15px] leading-none font-medium shadow-sm backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-2 hover:shadow-md">
                     <SkillIcon
                       className={cn(
-                        "text-muted-foreground size-4 opacity-50 grayscale transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/skill:opacity-100 group-hover/skill:grayscale-0",
+                        "text-muted-foreground size-[18px] shrink-0 opacity-50 grayscale transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/skill:opacity-100 group-hover/skill:grayscale-0",
                         color,
                       )}
                     />
                     {skill}
                   </span>
+
+                  {/* Sticky note on hover */}
+                  <div
+                    aria-hidden="true"
+                    className={cn(
+                      "pointer-events-none absolute bottom-full left-1/2 z-20 mb-3 hidden w-48 -translate-x-1/2 translate-y-1 opacity-0 transition-all duration-200 ease-out group-hover/pill:pointer-events-auto group-hover/pill:translate-y-0 group-hover/pill:opacity-100 sm:block",
+                    )}>
+                    <div
+                      className={cn(
+                        "relative rounded-sm border border-amber-200/60 bg-[#fef08a] px-3 py-2.5 text-center shadow-[0_4px_12px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)] dark:border-amber-300/50 dark:bg-[#fef9c3]",
+                        rotation,
+                      )}>
+                      <div className="absolute -top-1.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-sm bg-white/60 shadow-sm backdrop-blur-sm dark:bg-white/70" />
+                      <div className="absolute -top-1 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-amber-400/60 dark:bg-amber-500/50" />
+                      <p className="font-mono text-[11px] leading-tight font-medium text-amber-900">
+                        {joke}
+                      </p>
+                      <div className="absolute right-0 bottom-0 size-3 bg-gradient-to-tl from-amber-200/80 to-transparent dark:from-amber-300/60" />
+                    </div>
+                    <div className="mx-auto h-2 w-2 -translate-y-[1px] rotate-45 border-r border-b border-amber-200/60 bg-[#fef08a] dark:border-amber-300/50 dark:bg-[#fef9c3]" />
+                  </div>
                 </li>
               );
             })}

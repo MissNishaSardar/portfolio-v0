@@ -51,15 +51,16 @@ const SocialLinks = ({ links = socials, className }: SocialLinksProps) => {
       {links.map(({ label, href, icon }) => {
         const Icon = iconMap[icon];
 
+        const isMail = href.startsWith("mailto:");
         return (
           <a
             key={label}
             href={href}
             aria-label={label}
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors">
-            <Icon size={20} />
+            target={isMail ? undefined : "_blank"}
+            rel={isMail ? undefined : "noreferrer noopener"}
+            className="text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex size-9 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none">
+            <Icon size={18} />
           </a>
         );
       })}

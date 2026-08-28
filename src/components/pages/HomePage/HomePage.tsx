@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <section className="relative flex flex-1 flex-col justify-center overflow-hidden py-16">
       <div
-        aria-hidden
+        aria-hidden="true"
         className="pointer-events-none absolute top-1/2 left-1/2 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
       />
 

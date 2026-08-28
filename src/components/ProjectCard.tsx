@@ -25,7 +25,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
       transition={{ duration: 0.4, delay: index * 0.08 }}
       className="group relative h-full">
       <div
-        aria-hidden
+        aria-hidden="true"
         className={cn(
           "absolute -inset-px rounded-xl bg-gradient-to-br opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-50",
           accent,
@@ -34,7 +34,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
 
       <Card className="relative h-full transition-transform duration-300 group-hover:-translate-y-1">
         <div
-          aria-hidden
+          aria-hidden="true"
           className={cn(
             "relative -mx-(--card-spacing) -mt-(--card-spacing) flex aspect-[16/9] items-center justify-center overflow-hidden bg-gradient-to-br",
             accent,
@@ -44,7 +44,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
           </span>
 
           <div
-            aria-hidden
+            aria-hidden="true"
             className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_60%)]"
           />
 
