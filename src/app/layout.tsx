@@ -1,5 +1,4 @@
 import { Provider as JotaiProvider } from "jotai";
-import Script from "next/script";
 
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
@@ -18,14 +17,14 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
       lang="en"
       className={`${inter.variable} ${geistMono.variable} antialiased`}
       suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <Script
-          id="theme-script"
-          strategy="beforeInteractive"
+      <head>
+        <script
           dangerouslySetInnerHTML={{
             __html: `try{const s=localStorage.getItem("theme")||"dark";let t=s;if(t==="system"){try{t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch{}}document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t}catch(e){}`,
           }}
         />
+      </head>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute={"class"}
           defaultTheme="dark"

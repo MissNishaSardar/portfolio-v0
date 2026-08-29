@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import CoffeeStain from "@/components/CoffeeStain";
 import SectionHeading from "@/components/SectionHeading";
 import { profile } from "@/data/portfolio";
 
@@ -10,6 +11,23 @@ const AboutPage = () => {
         aria-hidden="true"
         className="pointer-events-none absolute top-1/2 left-1/2 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.10),transparent_65%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
       />
+      {/* Coffee stain - only on About, desk mood */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-2 bottom-2 z-0 hidden opacity-40 sm:block dark:opacity-45">
+        <CoffeeStain
+          size="small"
+          className="opacity-60 dark:opacity-60"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-1/2 bottom-0 z-0 translate-x-1/2 opacity-35 sm:hidden dark:opacity-40">
+        <CoffeeStain
+          size="small"
+          className="scale-[0.85] opacity-50 dark:opacity-50"
+        />
+      </div>
 
       <div className="relative z-10 grid w-full max-w-7xl grid-cols-1 items-center justify-between gap-12 lg:grid-cols-[360px_1fr] lg:gap-12">
         <div className="relative mx-auto w-full max-w-56">

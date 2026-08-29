@@ -93,7 +93,7 @@ export default function LiveClock({
         <div
           aria-hidden="true"
           className={cn(
-            "bg-muted/40 inline-flex h-5 w-[260px] animate-pulse items-center gap-2 rounded-full",
+            "bg-muted/40 inline-flex h-5 w-65 animate-pulse items-center gap-2 rounded-full",
             className,
           )}
         />
@@ -103,11 +103,11 @@ export default function LiveClock({
       <>
         <div
           aria-hidden="true"
-          className="border-glass-border bg-glass absolute top-4 right-4 z-20 hidden h-[68px] w-[232px] animate-pulse flex-col items-end justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:flex"
+          className="border-glass-border bg-glass absolute top-4 right-4 z-20 hidden h-17 w-58 animate-pulse flex-col items-end justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:flex"
         />
         <div
           aria-hidden="true"
-          className="border-glass-border bg-glass relative z-20 flex h-[68px] w-full max-w-[280px] animate-pulse flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:hidden"
+          className="border-glass-border bg-glass relative z-20 flex h-17 w-full max-w-70 animate-pulse flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:hidden"
         />
       </>
     );
@@ -160,7 +160,7 @@ export default function LiveClock({
           className="text-muted-foreground/40 hidden sm:inline">
           ·
         </span>
-        <span className="text-muted-foreground max-w-[220px] truncate text-xs leading-tight font-normal sm:text-xs">
+        <span className="text-muted-foreground max-w-55 truncate text-xs leading-tight font-normal sm:text-xs">
           {labelMood}
         </span>
       </div>
@@ -180,7 +180,7 @@ export default function LiveClock({
           {displayTime}
         </time>
       </div>
-      <p className="text-muted-foreground max-w-[220px] text-xs leading-tight">
+      <p className="text-muted-foreground max-w-55 text-xs leading-tight">
         {labelMood}
       </p>
     </>
@@ -197,7 +197,7 @@ export default function LiveClock({
       </div>
       {/* Mobile: centered above content */}
       <div
-        className="border-glass-border bg-glass relative z-20 flex w-full max-w-[280px] flex-col items-center gap-1 rounded-xl border px-4 py-2 text-center shadow-sm backdrop-blur-md sm:hidden"
+        className="border-glass-border bg-glass relative z-20 flex w-full max-w-70 flex-col items-center gap-1 rounded-xl border px-4 py-2 text-center shadow-sm backdrop-blur-md sm:hidden"
         aria-live="polite"
         aria-label={`Current time ${displayTime}, ${labelMood}`}>
         {content}
@@ -207,4 +207,4 @@ export default function LiveClock({
 }
 
 // Export helper for testing
-export { getMood, getHourInTimeZone };
+export { getHourInTimeZone, getMood };
