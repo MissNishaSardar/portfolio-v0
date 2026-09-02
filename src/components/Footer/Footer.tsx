@@ -17,7 +17,7 @@ const Footer = () => {
             Thanks for spending some here.&quot;
           </blockquote>
           <figcaption className="text-muted-foreground/50 text-[11px] italic">
-            — Nisha
+            - Nisha
           </figcaption>
         </figure>
 

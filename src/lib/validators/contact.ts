@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Reusable primitives — Zod v4 error option, strict constraints
+// Reusable primitives: Zod v4 error option, strict constraints
 export const NameSchema = z
   .string({ error: "Name is required" })
   .trim()

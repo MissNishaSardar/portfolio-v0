@@ -198,8 +198,8 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
               className="text-muted-foreground mt-3 max-w-sm text-sm leading-relaxed font-light">
-              You’ve reached my web space. Happy to have you here—feel free to
-              explore! 🌐✨
+              You have reached my web space. Happy to have you here. Feel free
+              to explore! 🌐✨
             </motion.p>
           </motion.div>
 
@@ -224,7 +224,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
             type="button"
             onClick={handleSkip}
             className="border-glass-border bg-glass text-muted-foreground hover:bg-glass hover:text-foreground focus-visible:ring-ring absolute right-6 bottom-6 rounded-full border px-4 py-2 text-xs shadow-[var(--glass-shadow)] backdrop-blur-md transition-colors focus-visible:ring-2 focus-visible:outline-none">
-            Skip — Esc
+            Skip - Esc
           </button>
         </motion.div>
       : null}

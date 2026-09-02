@@ -4,7 +4,7 @@ import SkillsPage from "@/components/pages/SkillsPage/SkillsPage";
 import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: `Skills — ${profile.name}`,
+  title: `Skills | ${profile.name}`,
   description: "Everyday Tools and Technologies.",
 };
 

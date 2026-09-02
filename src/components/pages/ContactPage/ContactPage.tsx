@@ -15,7 +15,7 @@ const ContactPage = () => {
       <div className="relative z-10 flex w-full flex-col items-center gap-10">
         <SectionHeading
           title="Code is how I think. Design is how I care."
-          subtitle="— my philosophy in one line"
+          subtitle="my philosophy in one line"
           className="text-center"
         />
 

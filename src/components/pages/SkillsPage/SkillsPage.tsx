@@ -24,7 +24,7 @@ const SkillsPage = () => {
         className="pointer-events-none absolute top-1/2 left-1/2 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.10),transparent_65%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
       />
 
-      {/* iOS sliding pill toggle — right corner */}
+      {/* iOS sliding pill toggle, right corner */}
       <div className="absolute top-4 right-4 z-20 sm:top-6 sm:right-6">
         <div
           role="tablist"
@@ -74,8 +74,8 @@ const SkillsPage = () => {
           title={isTech ? "My Toolkit" : "Soft Skills"}
           subtitle={
             isTech ?
-              "Tools and technologies I use daily 💻— and the rest I know how to search, learn, and apply."
-            : "How I work with people and problems 🤝 — because great products take more than just code 💡"
+              "Tools and technologies I use daily 💻 and the rest I know how to search, learn, and apply."
+            : "How I work with people and problems 🤝, because great products take more than just code 💡"
           }
           className="items-center text-center"
         />

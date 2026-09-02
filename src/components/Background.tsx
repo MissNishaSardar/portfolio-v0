@@ -3,7 +3,7 @@ const Background = ({ className = "" }: { className?: string }) => {
     <div
       aria-hidden="true"
       className={`pointer-events-none fixed inset-0 -z-10 overflow-hidden ${className}`}>
-      {/* Aurora blobs — soft, blurred, dark-depth */}
+      {/* Aurora blobs, soft, blurred, dark-depth */}
       <div className="absolute -top-32 -left-40 h-[42rem] w-[52rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.18),transparent_65%)] blur-[70px] dark:bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.16),transparent_65%)]" />
       <div className="absolute top-[18%] -right-48 h-[38rem] w-[46rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent_65%)] blur-[70px] dark:bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.14),transparent_65%)]" />
       <div className="absolute bottom-[-12%] left-[28%] h-[34rem] w-[44rem] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.13),transparent_65%)] blur-[70px] dark:bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.12),transparent_65%)]" />

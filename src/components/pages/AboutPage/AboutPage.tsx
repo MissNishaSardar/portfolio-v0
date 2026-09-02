@@ -36,7 +36,7 @@ const AboutPage = () => {
         />
       </div>
 
-      {/* Page heading — full width, out of columns */}
+      {/* Page heading, full width, out of columns */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
         animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ const AboutPage = () => {
       </motion.div>
 
       <div className="relative z-10 grid w-full max-w-7xl grid-cols-1 items-start gap-12 lg:grid-cols-[240px_1fr] lg:gap-14">
-        {/* Left — portrait */}
+        {/* Left, portrait */}
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ const AboutPage = () => {
             <div className="relative overflow-hidden rounded-xl">
               <Image
                 src="/nisha.jpg"
-                alt="Nisha Sardar — Full-Stack Developer"
+                alt="Nisha Sardar, Full-Stack Developer"
                 width={280}
                 height={350}
                 priority
@@ -75,7 +75,7 @@ const AboutPage = () => {
           </div>
         </motion.div>
 
-        {/* Right — bio only */}
+        {/* Right, bio only */}
         <div className="flex flex-col gap-5 text-left">
           {bioParagraphs.map((paragraph, index) => {
             const isFirst = index === 0;
