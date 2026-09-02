@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 type CurtainIntroProps = {
@@ -155,7 +155,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               &#x300C;NS&#x300D;
             </motion.div>
 
-            {/* Welcome mask reveal - same extrabold tracking as hero name */}
+            {/* Welcome mask reveal - same extrabold tracking as hero name, About-matched sky→indigo gradient */}
             <div className="mt-3 flex overflow-hidden">
               {WELCOME.split("").map((letter, i) => (
                 <motion.span
@@ -167,7 +167,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
                     duration: 0.5,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="inline-block text-5xl font-extrabold tracking-tight sm:text-7xl">
+                  className="inline-block bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl dark:from-sky-400 dark:to-indigo-400">
                   {letter}
                 </motion.span>
               ))}

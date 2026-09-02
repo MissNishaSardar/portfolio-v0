@@ -160,7 +160,7 @@ export default function LiveClock({
           className="text-muted-foreground/40 hidden sm:inline">
           ·
         </span>
-        <span className="text-muted-foreground max-w-55 truncate text-xs leading-tight font-normal sm:text-xs">
+        <span className="text-muted-foreground text-xs leading-tight font-normal sm:text-xs">
           {labelMood}
         </span>
       </div>

@@ -2,14 +2,21 @@ import {
   Atom,
   Boxes,
   Braces,
+  ClipboardCheck,
   Code2,
   Component,
   Database,
+  Flame,
   GitBranch,
   GitFork,
   Layers,
+  MessageCircle,
+  MessageCircleQuestion,
+  MessageSquareHeart,
   PenTool,
   Plug,
+  Rocket,
+  Search,
   Server,
   ShieldCheck,
   Wind,
@@ -43,6 +50,49 @@ export const skillMeta: Record<string, { icon: LucideIcon; color: string }> = {
 
 export const defaultSkillMeta = {
   icon: Code2,
+  color: "group-hover/skill:text-primary",
+};
+
+export const softSkillMeta: Record<
+  string,
+  { icon: LucideIcon; color: string }
+> = {
+  'Saying "I don\'t know"': {
+    icon: MessageCircleQuestion,
+    color: "group-hover/skill:text-sky-500",
+  },
+  "Patience with messy code": {
+    icon: Code2,
+    color: "group-hover/skill:text-violet-500",
+  },
+  "Owning mistakes": {
+    icon: ShieldCheck,
+    color: "group-hover/skill:text-amber-500",
+  },
+  "Feedback without ego": {
+    icon: MessageSquareHeart,
+    color: "group-hover/skill:text-rose-500",
+  },
+  "Calm when it breaks": {
+    icon: Flame,
+    color: "group-hover/skill:text-orange-500",
+  },
+  "Shipping over polishing": {
+    icon: Rocket,
+    color: "group-hover/skill:text-emerald-500",
+  },
+  "Listening for the real question": {
+    icon: Search,
+    color: "group-hover/skill:text-indigo-500",
+  },
+  "Doing what I said": {
+    icon: ClipboardCheck,
+    color: "group-hover/skill:text-blue-500",
+  },
+};
+
+export const defaultSoftSkillMeta = {
+  icon: MessageCircle,
   color: "group-hover/skill:text-primary",
 };
 

@@ -5,7 +5,7 @@ import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: `About — ${profile.name}`,
-  description: "About me",
+  description: "Explore my interests, my journey as a programmer",
 };
 
 const page = () => {

@@ -1,13 +1,13 @@
 "use client";
 
 import { ArrowRight, Mail } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 
+import Background from "@/components/Background";
 import CurtainIntro from "@/components/CurtainIntro";
 import { Button } from "@/components/shadcnui/button";
-import { profile } from "@/data/portfolio";
 
 let hasShownForThisHardReload = false;
 
@@ -55,74 +55,120 @@ const HomePage = () => {
     heroIntro === null ?
       <div
         aria-hidden="true"
-        className="relative z-10 flex flex-col items-center gap-6 text-center opacity-0">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
-          {profile.name}
+        className="relative z-10 flex flex-col items-start gap-4 text-left opacity-0">
+        <span className="text-muted-foreground font-mono text-xs tracking-[3px] uppercase">
+          NISHA SARDAR <span className="text-sky-500 dark:text-sky-400">|</span>{" "}
+          WEB DEVELOPER{" "}
+          <span className="text-indigo-600 dark:text-indigo-400">|</span>{" "}
+          KOLKATA, INDIA
+        </span>
+        <h1 className="text-foreground max-w-3xl text-[clamp(44px,8vw,96px)] leading-[0.95] font-extrabold tracking-[-0.03em] text-balance">
+          <span className="block">Innovate with intent,</span>
+          <span className="block pl-[0.55em]">
+            deliver with{" "}
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent dark:from-sky-400 dark:to-indigo-400">
+                impact.
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-1 left-0 h-[3px] w-full bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-400 dark:to-indigo-400"
+              />
+            </span>
+          </span>
         </h1>
-        <h2 className="text-2xl font-light text-zinc-400 sm:text-3xl">
-          {profile.role}
-        </h2>
-        <p className="max-w-2xl leading-relaxed font-light text-zinc-400">
-          {profile.tagline}
+        <p className="text-foreground/70 max-w-xl text-[17px] leading-relaxed font-normal dark:text-zinc-400">
+          Weaving robust backend architecture into delightful user moments.
+          Explore my skills, projects, and journey in About Me. If we align,
+          feel free to reach.
         </p>
       </div>
     : <div
         key={heroKey}
-        className="relative z-10 flex flex-col items-center gap-6 text-center">
+        className="relative z-10 flex flex-col items-start gap-4 text-left">
+        <motion.span
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: baseDelay,
+            duration: 0.5,
+            ease: easeOut,
+          }}
+          className="text-muted-foreground font-mono text-xs tracking-[3px] uppercase">
+          NISHA SARDAR <span className="text-sky-500 dark:text-sky-400">|</span>{" "}
+          WEB DEVELOPER{" "}
+          <span className="text-indigo-600 dark:text-indigo-400">|</span>{" "}
+          KOLKATA, INDIA
+        </motion.span>
+
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: baseDelay,
+            delay: baseDelay + 0.08,
             duration: 0.7,
             ease: easeOut,
           }}
-          className="text-5xl font-extrabold tracking-tight sm:text-7xl">
-          {profile.name}
+          className="text-foreground max-w-3xl text-[clamp(44px,8vw,96px)] leading-[0.95] font-extrabold tracking-[-0.03em] text-balance">
+          <span className="block">Innovate with intent,</span>
+          <span className="block pl-[0.55em]">
+            deliver with{" "}
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-transparent dark:from-sky-400 dark:to-indigo-400">
+                impact.
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-1 left-0 h-[3px] w-full bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-400 dark:to-indigo-400"
+              />
+            </span>
+          </span>
         </motion.h1>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: baseDelay + 0.12,
-            duration: 0.6,
-            ease: easeOut,
-          }}
-          className="text-2xl font-light text-zinc-400 sm:text-3xl">
-          {profile.role}
-        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: baseDelay + 0.24,
+            delay: baseDelay + 0.18,
             duration: 0.6,
             ease: easeOut,
           }}
-          className="max-w-2xl leading-relaxed font-light text-zinc-400">
-          {profile.tagline}
+          className="text-foreground/70 max-w-xl text-[17px] leading-relaxed font-normal dark:text-zinc-400">
+          Weaving robust backend architecture into delightful user moments.
+          Explore my skills, projects, and journey in About Me. If we align,
+          feel free to reach.
         </motion.p>
+
+        <motion.span
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{
+            delay: baseDelay + 0.24,
+            duration: 0.4,
+            ease: easeOut,
+          }}
+          aria-hidden="true"
+          className="h-px w-10 origin-left bg-gradient-to-r from-sky-500/40 to-indigo-600/40"
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: baseDelay + 0.36,
+            delay: baseDelay + 0.32,
             duration: 0.6,
             ease: easeOut,
           }}
-          className="flex items-center gap-3 pt-2">
+          className="flex flex-wrap items-center justify-start gap-3 pt-4">
           <Button
             render={<Link href="/projects" />}
             nativeButton={false}
             size="lg"
-            className="group gap-3 rounded-full px-8 py-6 text-lg shadow-md hover:shadow-lg">
+            className="group gap-2 rounded-full px-7 py-5 text-[15px] shadow-md hover:shadow-lg">
             View Projects
             <ArrowRight
               data-icon="inline-end"
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
+              className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
             />
           </Button>
           <Button
@@ -130,8 +176,11 @@ const HomePage = () => {
             nativeButton={false}
             variant="outline"
             size="lg"
-            className="border-glass-border bg-glass hover:bg-glass gap-3 rounded-full px-8 py-6 text-lg backdrop-blur-md">
-            <Mail data-icon="inline-start" />
+            className="border-glass-border bg-glass hover:bg-glass gap-2 rounded-full px-7 py-5 text-[15px] backdrop-blur-md">
+            <Mail
+              data-icon="inline-start"
+              className="size-4"
+            />
             Get in Touch
           </Button>
         </motion.div>
@@ -142,11 +191,13 @@ const HomePage = () => {
       {heroIntro === true ?
         <CurtainIntro onComplete={handleCurtainComplete} />
       : null}
+      <Background />
 
       <section className="relative flex flex-1 flex-col justify-center overflow-hidden py-16">
+        {/* Extra glow kept for hero focus */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-1/2 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.12),transparent_65%)]"
         />
 
         {heroContent}

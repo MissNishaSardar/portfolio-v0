@@ -10,7 +10,7 @@ export default function ToolkitGrid() {
   const allSkills = skills.flatMap((category) => category.skills);
 
   return (
-    <div className="border-glass-border relative w-full max-w-3xl rounded-[2rem] border bg-transparent p-10 backdrop-blur-none sm:border-dashed sm:p-12 md:p-14">
+    <div className="relative w-full max-w-3xl">
       <ul className="relative flex flex-wrap justify-center gap-4 gap-y-5 sm:gap-5 sm:gap-y-6">
         {allSkills.map((skill, index) => {
           const { icon: SkillIcon, color } =
