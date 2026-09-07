@@ -17,6 +17,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
   const [lifting, setLifting] = useState(false);
   const [count, setCount] = useState(0);
   const timersRef = useRef<number[]>([]);
+  const prevOverflowRef = useRef<string>("");
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -38,7 +39,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
     }
 
     // Lock scroll during intro
-    const prevOverflow = document.body.style.overflow;
+    prevOverflowRef.current = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     // Counter 0 -> 100 from 1.1s to 4.4s (3.3s)
@@ -61,7 +62,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
     const tLift = window.setTimeout(() => setLifting(true), 5000);
     const tDone = window.setTimeout(() => {
       setShouldShow(false);
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = prevOverflowRef.current;
       onComplete?.();
     }, 5900);
 
@@ -69,7 +70,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
 
     return () => {
       timersRef.current.forEach(window.clearTimeout);
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = prevOverflowRef.current;
     };
   }, [onComplete, shouldReduceMotion]);
 
@@ -80,7 +81,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
     setLifting(true);
     window.setTimeout(() => {
       setShouldShow(false);
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflowRef.current;
       onComplete?.();
     }, 450);
   };
@@ -106,7 +107,9 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="bg-background fixed inset-0 z-[100] flex items-center justify-center">
-            <p className="text-muted-foreground text-sm">Welcome</p>
+            <p className="text-muted-foreground text-sm font-[var(--font-instrument-serif)] italic">
+              Welcome
+            </p>
           </motion.div>
         : null}
       </AnimatePresence>
@@ -155,21 +158,24 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               &#x300C;NS&#x300D;
             </motion.div>
 
-            {/* Welcome mask reveal - same extrabold tracking as hero name, About-matched sky→indigo gradient */}
-            <div className="mt-3 flex overflow-hidden">
+            {/* Welcome mask reveal - italic serif needs extra slant breathing room */}
+            <div className="mt-3 flex justify-center overflow-visible px-8 py-3">
               {WELCOME.split("").map((letter, i) => (
-                <motion.span
+                <span
                   key={`${letter}-${i}`}
-                  initial={{ y: "100%" }}
-                  animate={{ y: "0%" }}
-                  transition={{
-                    delay: 0.45 + i * 0.045,
-                    duration: 0.5,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="inline-block bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl dark:from-sky-400 dark:to-indigo-400">
-                  {letter}
-                </motion.span>
+                  className="inline-block overflow-hidden px-[0.14em] pb-3">
+                  <motion.span
+                    initial={{ y: "100%" }}
+                    animate={{ y: "0%" }}
+                    transition={{
+                      delay: 0.45 + i * 0.045,
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="inline-block bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text pr-[0.14em] pb-[0.08em] text-5xl font-[var(--font-instrument-serif)] font-normal tracking-tight text-transparent italic sm:text-7xl dark:from-sky-400 dark:to-indigo-400">
+                    {letter}
+                  </motion.span>
+                </span>
               ))}
             </div>
 

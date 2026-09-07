@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import LiveClock from "@/components/LiveClock";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { navLinks } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -12,7 +13,7 @@ const Header = () => {
 
   return (
     <header
-      className="fixed right-0 left-0 border-b shadow"
+      className="fixed right-0 left-0 overflow-visible border-b shadow"
       aria-label="app-header">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link href={"/"}>
@@ -35,10 +36,10 @@ const Header = () => {
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "text-sm transition-colors hover:text-foreground",
-                    isActive
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground"
+                    "hover:text-foreground text-sm transition-colors",
+                    isActive ?
+                      "text-foreground font-medium"
+                    : "text-muted-foreground",
                   )}>
                   {label}
                 </Link>
@@ -48,6 +49,7 @@ const Header = () => {
           <ThemeToggleButton />
         </nav>
       </div>
+      <LiveClock hideMobile />
     </header>
   );
 };

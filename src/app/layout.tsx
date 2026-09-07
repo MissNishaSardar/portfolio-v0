@@ -3,7 +3,7 @@ import { Provider as JotaiProvider } from "jotai";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
-import { dancingScript, geistMono, inter } from "@/lib/fonts";
+import { dancingScript, geistMono, instrumentSerif, inter } from "@/lib/fonts";
 import type { ReactNode } from "react";
 import "./globals.css";
 
@@ -15,7 +15,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} ${instrumentSerif.variable} antialiased`}
       suppressHydrationWarning>
       <head>
         <script
@@ -31,7 +31,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
           enableSystem={false}
           disableTransitionOnChange>
           <JotaiProvider>
-            <div className="relative flex min-h-dvh flex-col overflow-x-hidden">
+            <div className="relative flex min-h-dvh flex-col overflow-x-clip">
               <Header />
 
               <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-20">

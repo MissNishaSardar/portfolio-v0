@@ -59,12 +59,16 @@ type LiveClockProps = {
   variant?: "default" | "footer";
   timeZone?: string;
   className?: string;
+  hideDesktop?: boolean;
+  hideMobile?: boolean;
 };
 
 export default function LiveClock({
   variant = "default",
   timeZone,
   className,
+  hideDesktop = false,
+  hideMobile = false,
 }: LiveClockProps) {
   const effectiveTimeZone =
     timeZone ?? (variant === "footer" ? "Asia/Kolkata" : undefined);
@@ -72,6 +76,7 @@ export default function LiveClock({
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    if (hideDesktop && hideMobile) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setNow(new Date());
     // Align to next minute then tick every minute (hour+minute display only)
@@ -85,7 +90,7 @@ export default function LiveClock({
       clearTimeout(timeoutId);
       if (intervalId) clearInterval(intervalId);
     };
-  }, []);
+  }, [hideDesktop, hideMobile]);
 
   if (!now) {
     if (variant === "footer") {
@@ -101,14 +106,18 @@ export default function LiveClock({
     }
     return (
       <>
-        <div
-          aria-hidden="true"
-          className="border-glass-border bg-glass absolute top-4 right-4 z-20 hidden h-17 w-58 animate-pulse flex-col items-end justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:flex"
-        />
-        <div
-          aria-hidden="true"
-          className="border-glass-border bg-glass relative z-20 flex h-17 w-full max-w-70 animate-pulse flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:hidden"
-        />
+        {!hideDesktop && (
+          <div
+            aria-hidden="true"
+            className="border-glass-border bg-glass absolute right-6 bottom-0 z-20 hidden h-17 w-58 translate-y-1/2 animate-pulse flex-col items-end justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:flex"
+          />
+        )}
+        {!hideMobile && (
+          <div
+            aria-hidden="true"
+            className="border-glass-border bg-glass relative z-20 flex h-17 w-full max-w-70 animate-pulse flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow-sm backdrop-blur-md sm:hidden"
+          />
+        )}
       </>
     );
   }
@@ -188,20 +197,24 @@ export default function LiveClock({
 
   return (
     <>
-      {/* Desktop: top-right corner */}
-      <div
-        className="border-glass-border bg-glass absolute top-4 right-4 z-20 hidden flex-col items-end gap-1 rounded-xl border px-4 py-2 text-right shadow-sm backdrop-blur-md sm:flex"
-        aria-live="polite"
-        aria-label={`Current time ${displayTime}, ${labelMood}`}>
-        {content}
-      </div>
+      {/* Desktop: shared equally on header and body - straddles header bottom */}
+      {!hideDesktop && (
+        <div
+          className="border-glass-border bg-glass absolute right-6 bottom-0 z-20 hidden translate-y-1/2 flex-col items-end gap-1 rounded-xl border px-4 py-2 text-right shadow-sm backdrop-blur-md sm:flex"
+          aria-live="polite"
+          aria-label={`Current time ${displayTime}, ${labelMood}`}>
+          {content}
+        </div>
+      )}
       {/* Mobile: centered above content */}
-      <div
-        className="border-glass-border bg-glass relative z-20 flex w-full max-w-70 flex-col items-center gap-1 rounded-xl border px-4 py-2 text-center shadow-sm backdrop-blur-md sm:hidden"
-        aria-live="polite"
-        aria-label={`Current time ${displayTime}, ${labelMood}`}>
-        {content}
-      </div>
+      {!hideMobile && (
+        <div
+          className="border-glass-border bg-glass relative z-20 flex w-full max-w-70 flex-col items-center gap-1 rounded-xl border px-4 py-2 text-center shadow-sm backdrop-blur-md sm:hidden"
+          aria-live="polite"
+          aria-label={`Current time ${displayTime}, ${labelMood}`}>
+          {content}
+        </div>
+      )}
     </>
   );
 }

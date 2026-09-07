@@ -85,21 +85,21 @@ const SkillCard = ({ category, index = 0 }: SkillCardProps) => {
                   <div
                     aria-hidden="true"
                     className={cn(
-                      "pointer-events-none absolute bottom-full left-1/2 z-20 mb-3 hidden w-48 -translate-x-1/2 translate-y-1 opacity-0 transition-all duration-200 ease-out group-hover/pill:pointer-events-auto group-hover/pill:translate-y-0 group-hover/pill:opacity-100 sm:block",
+                      "pointer-events-none absolute bottom-full left-1/2 z-20 mb-3 hidden w-48 -translate-x-1/2 translate-y-1 transform-gpu opacity-0 transition-[opacity,transform] duration-150 ease-out will-change-transform group-hover/pill:pointer-events-auto group-hover/pill:translate-y-0 group-hover/pill:opacity-100 sm:block",
                     )}>
                     <div
                       className={cn(
-                        "relative rounded-sm border border-amber-200/60 bg-[#fef08a] px-3 py-2.5 text-center shadow-[0_4px_12px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)] dark:border-amber-300/50 dark:bg-[#fef9c3]",
+                        "bg-card border-border relative rounded-sm border px-3 py-2.5 text-center shadow-md",
                         rotation,
                       )}>
-                      <div className="absolute -top-1.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-sm bg-white/60 shadow-sm backdrop-blur-sm dark:bg-white/70" />
-                      <div className="absolute -top-1 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-amber-400/60 dark:bg-amber-500/50" />
-                      <p className="font-mono text-[11px] leading-tight font-medium text-amber-900">
+                      <div className="absolute -top-1.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-sm bg-white/80 shadow-sm dark:bg-white/15" />
+                      <div className="bg-muted-foreground/25 absolute -top-1 left-1/2 size-1.5 -translate-x-1/2 rounded-full" />
+                      <p className="text-foreground font-mono text-[11px] leading-tight font-medium">
                         {joke}
                       </p>
-                      <div className="absolute right-0 bottom-0 size-3 bg-gradient-to-tl from-amber-200/80 to-transparent dark:from-amber-300/60" />
+                      <div className="from-border/40 absolute right-0 bottom-0 size-3 bg-gradient-to-tl to-transparent" />
                     </div>
-                    <div className="mx-auto h-2 w-2 -translate-y-[1px] rotate-45 border-r border-b border-amber-200/60 bg-[#fef08a] dark:border-amber-300/50 dark:bg-[#fef9c3]" />
+                    <div className="bg-card border-border mx-auto h-2 w-2 -translate-y-[1px] rotate-45 border-r border-b" />
                   </div>
                 </li>
               );

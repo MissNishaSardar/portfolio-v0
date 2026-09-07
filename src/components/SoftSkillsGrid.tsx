@@ -7,55 +7,60 @@ import { defaultSoftSkillMeta, softSkillMeta } from "@/lib/skillsMeta";
 import { cn } from "@/lib/utils";
 
 export default function SoftSkillsGrid() {
-  return (
-    <div className="relative w-full max-w-5xl">
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-        {softSkills.map((skill, index) => {
-          const { icon: Icon, color } =
-            softSkillMeta[skill.title] ?? defaultSoftSkillMeta;
-          const hoverColor = color.replace(
-            "group-hover/skill:",
-            "group-hover/card:",
-          );
+  const row1 = softSkills.slice(0, 4);
+  const row2 = softSkills.slice(4, 7);
+  const rows = [row1, row2];
 
-          return (
-            <motion.li
-              key={skill.title}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.04 }}
-              className="group/card h-full">
-              <div className="border-glass-border bg-glass/60 hover:bg-glass relative flex h-full flex-col gap-3 overflow-hidden rounded-xl border p-4 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
-                {/* quote mark accent */}
+  return (
+    <div className="relative flex w-full max-w-[740px] flex-col gap-2.5">
+      {rows.map((row, rowIndex) => (
+        <ul
+          key={rowIndex}
+          className="flex flex-wrap justify-start gap-2 sm:gap-2.5 lg:flex-nowrap lg:gap-2.5">
+          {row.map((skill) => {
+            const index = softSkills.indexOf(skill);
+            const { icon: Icon, color } =
+              softSkillMeta[skill.title] ?? defaultSoftSkillMeta;
+
+            return (
+              <motion.li
+                key={skill.title}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
+                className="group relative focus-within:z-20">
                 <span
-                  aria-hidden="true"
-                  className="text-muted-foreground/15 pointer-events-none absolute top-3 left-3 font-serif text-3xl leading-none select-none">
-                  “
+                  tabIndex={0}
+                  aria-describedby={`tooltip-soft-${index}`}
+                  className="group/skill text-muted-foreground hover:text-foreground focus-visible:text-foreground border-glass-border bg-glass-pill hover:bg-glass hover:border-glass-border focus-visible:border-glass-border focus-visible:bg-glass focus-visible:ring-ring inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] leading-none font-medium whitespace-nowrap shadow-sm backdrop-blur-md transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:shadow-md focus-visible:-translate-y-1 focus-visible:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:px-4 sm:py-2 sm:text-[13px]">
+                  <Icon
+                    className={cn(
+                      "text-muted-foreground size-[16px] shrink-0 opacity-50 grayscale transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] group-focus-within:opacity-100 group-focus-within:grayscale-0 group-hover/skill:opacity-100 group-hover/skill:grayscale-0 sm:size-[18px]",
+                      color,
+                    )}
+                  />
+                  {skill.title}
                 </span>
 
-                <div className="relative flex items-start gap-3 pt-1">
-                  <span className="border-glass-border bg-glass-pill flex size-9 shrink-0 items-center justify-center rounded-xl border backdrop-blur-sm">
-                    <Icon
-                      className={cn(
-                        "size-[18px] shrink-0 opacity-70 grayscale transition-all duration-200 group-hover/card:opacity-100 group-hover/card:grayscale-0",
-                        "text-muted-foreground",
-                        hoverColor,
-                      )}
-                    />
-                  </span>
-                  <h3 className="pt-1.5 text-[14px] leading-tight font-semibold tracking-tight">
-                    {skill.title}
-                  </h3>
+                <div
+                  id={`tooltip-soft-${index}`}
+                  role="tooltip"
+                  className={cn(
+                    "pointer-events-none absolute bottom-full left-1/2 z-20 mb-3 w-64 -translate-x-1/2 translate-y-1 transform-gpu opacity-0 transition-[opacity,transform] duration-150 ease-out will-change-transform group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100",
+                    "hidden sm:block",
+                  )}>
+                  <div className="bg-card border-border relative rounded-lg border px-4 py-3 text-left shadow-md">
+                    <p className="text-muted-foreground text-xs leading-relaxed">
+                      {skill.description}
+                    </p>
+                  </div>
+                  <div className="bg-card border-border mx-auto h-2 w-2 -translate-y-[1px] rotate-45 border-r border-b" />
                 </div>
-
-                <p className="text-muted-foreground relative text-sm leading-relaxed">
-                  {skill.description}
-                </p>
-              </div>
-            </motion.li>
-          );
-        })}
-      </ul>
+              </motion.li>
+            );
+          })}
+        </ul>
+      ))}
     </div>
   );
 }
