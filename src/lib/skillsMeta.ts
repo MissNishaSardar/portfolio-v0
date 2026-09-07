@@ -15,7 +15,6 @@ import {
   MessageSquareHeart,
   PenTool,
   Plug,
-  Rocket,
   Search,
   Server,
   ShieldCheck,
@@ -76,10 +75,6 @@ export const softSkillMeta: Record<
   "Calm when it breaks": {
     icon: Flame,
     color: "group-hover/skill:text-orange-500",
-  },
-  "Shipping over polishing": {
-    icon: Rocket,
-    color: "group-hover/skill:text-emerald-500",
   },
   "Listening for the real question": {
     icon: Search,

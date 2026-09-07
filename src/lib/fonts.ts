@@ -1,4 +1,9 @@
-import { Geist_Mono, Inter, Dancing_Script } from "next/font/google";
+import {
+  Dancing_Script,
+  Geist_Mono,
+  Instrument_Serif,
+  Inter,
+} from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -16,4 +21,12 @@ export const dancingScript = Dancing_Script({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-cursive",
+});
+
+export const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
 });

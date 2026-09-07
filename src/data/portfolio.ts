@@ -29,7 +29,6 @@ export type SoftSkillIcon =
   | "owning-mistakes"
   | "feedback-ego"
   | "calm-breaks"
-  | "shipping-polishing"
   | "listening-question"
   | "doing-said";
 
@@ -55,8 +54,7 @@ export const profile = {
 export const navLinks: { label: string; href: Route }[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Skills", href: "/skills" },
-  { label: "Projects", href: "/projects" },
+  { label: "Studio", href: "/studio" },
 
   { label: "Contact", href: "/contact" },
 ];
@@ -139,12 +137,6 @@ export const softSkills: SoftSkill[] = [
     description:
       "When prod goes down, panic spreads, and so does calm. I start with 'what changed recently?' and work backwards. Firefighting is a process, not a mood.",
     icon: "calm-breaks",
-  },
-  {
-    title: "Shipping over polishing",
-    description:
-      "Perfectionism is procrastination in a nicer outfit. I polish what users actually touch and stop tinkering where nobody can tell.",
-    icon: "shipping-polishing",
   },
   {
     title: "Listening for the real question",
