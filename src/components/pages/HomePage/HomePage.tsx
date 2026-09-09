@@ -170,7 +170,7 @@ const HomePage = () => {
           }}
           className="flex flex-wrap items-center justify-start gap-3 pt-4">
           <Button
-            render={<Link href="/studio" />}
+            render={<Link href="/studio#projects" />}
             nativeButton={false}
             size="lg"
             className="group gap-2 rounded-full px-7 py-5 text-[15px] shadow-md hover:shadow-lg">
