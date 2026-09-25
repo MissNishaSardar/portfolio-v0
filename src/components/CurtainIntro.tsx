@@ -9,7 +9,7 @@ type CurtainIntroProps = {
 
 const WELCOME = "Welcome";
 
-export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
+const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
   const shouldReduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   const [shouldShow, setShouldShow] = useState(false);
@@ -42,7 +42,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
     prevOverflowRef.current = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Counter 0 -> 100 from 1.1s to 4.4s (3.3s)
+    // Counter 0 to 100 from 1.1s to 4.4s. Duration is 3.3s.
     const counterStart = window.setTimeout(() => {
       const start = Date.now();
       const duration = 3300;
@@ -149,7 +149,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
             }
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="relative z-10 flex flex-col items-center text-center">
-            {/* NS logo - same as Header */}
+            {/* NS logo. Same as Header. */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               &#x300C;NS&#x300D;
             </motion.div>
 
-            {/* Welcome mask reveal - italic serif needs extra slant breathing room */}
+            {/* Welcome mask reveal. Italic serif needs extra slant breathing room. */}
             <div className="mt-3 flex justify-center overflow-visible px-8 py-3">
               {WELCOME.split("").map((letter, i) => (
                 <span
@@ -179,7 +179,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               ))}
             </div>
 
-            {/* Progress line - glass pill track, matches site glass tokens */}
+            {/* Progress line. Glass pill track, matches site glass tokens. */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -198,7 +198,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
               </span>
             </motion.div>
 
-            {/* Subtitle - same font-light zinc-400/muted style as hero tagline */}
+            {/* Subtitle. Same font-light zinc-400/muted style as hero tagline. */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -209,7 +209,7 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
             </motion.p>
           </motion.div>
 
-          {/* Curved bottom edge - keeps background continuity with hero */}
+          {/* Curved bottom edge. Keeps background continuity with hero. */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute right-0 bottom-0 left-0">
@@ -225,15 +225,17 @@ export default function CurtainIntro({ onComplete }: CurtainIntroProps) {
             </svg>
           </div>
 
-          {/* Skip - glass pill button, matches Header/Home outline buttons */}
+          {/* Skip. Glass pill button, matches Header/Home outline buttons. */}
           <button
             type="button"
             onClick={handleSkip}
             className="border-glass-border bg-glass text-muted-foreground hover:bg-glass hover:text-foreground focus-visible:ring-ring absolute right-6 bottom-6 rounded-full border px-4 py-2 text-xs shadow-[var(--glass-shadow)] backdrop-blur-md transition-colors focus-visible:ring-2 focus-visible:outline-none">
-            Skip - Esc
+            Skip, Esc
           </button>
         </motion.div>
       : null}
     </AnimatePresence>
   );
-}
+};
+
+export default CurtainIntro;

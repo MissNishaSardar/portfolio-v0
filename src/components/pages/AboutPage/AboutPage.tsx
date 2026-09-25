@@ -36,7 +36,7 @@ const AboutPage = () => {
         aria-hidden="true"
         className="pointer-events-none absolute top-1/2 left-1/2 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.10),transparent_65%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
       />
-      {/* Coffee stain - only on About, desk mood */}
+      {/* Coffee stain. Only on About, desk mood. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-2 bottom-2 z-0 hidden opacity-45 sm:block dark:opacity-45">
@@ -54,7 +54,7 @@ const AboutPage = () => {
         />
       </div>
 
-      {/* Page heading - studio header style */}
+      {/* Page heading. Studio header style. */}
       <motion.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
         animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Favorites - one line heading, studio section size, icons centered */}
+      {/* Favorites. One line heading, studio section size, icons centered. */}
       <div className="relative z-10 mt-6 flex w-full max-w-7xl flex-col items-start gap-6">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}

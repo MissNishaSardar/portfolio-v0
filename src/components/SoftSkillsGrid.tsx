@@ -6,7 +6,7 @@ import { softSkills } from "@/data/portfolio";
 import { defaultSoftSkillMeta, softSkillMeta } from "@/lib/skillsMeta";
 import { cn } from "@/lib/utils";
 
-export default function SoftSkillsGrid() {
+const SoftSkillsGrid = () => {
   const row1 = softSkills.slice(0, 4);
   const row2 = softSkills.slice(4, 7);
   const rows = [row1, row2];
@@ -63,4 +63,6 @@ export default function SoftSkillsGrid() {
       ))}
     </div>
   );
-}
+};
+
+export default SoftSkillsGrid;

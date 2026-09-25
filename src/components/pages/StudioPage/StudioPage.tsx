@@ -48,7 +48,7 @@ const StudioPage = () => {
 
   return (
     <div className="flex flex-1 flex-col gap-10 pt-4 pb-16 sm:pt-6">
-      {/* Page heading - left-aligned, max-width ~720px */}
+      {/* Page heading. Left aligned, max width about 720px. */}
       <div className="flex w-full max-w-[720px] flex-col items-start gap-3 text-left">
         <span className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase">
           Studio
@@ -78,7 +78,7 @@ const StudioPage = () => {
 
       {/* Two-column body */}
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[190px_1fr] lg:gap-16">
-        {/* Left rail - sticky */}
+        {/* Left rail. Sticky. */}
         <nav
           aria-label="On this page"
           className="hidden h-fit self-start lg:sticky lg:top-[110px] lg:block">
@@ -118,7 +118,7 @@ const StudioPage = () => {
 
         {/* Right content */}
         <div className="flex flex-col gap-16">
-          {/* Section 01 - My Toolkit */}
+          {/* Section 01. My Toolkit. */}
           <section
             id="toolkit"
             className="flex scroll-mt-[90px] flex-col gap-6">
@@ -140,7 +140,7 @@ const StudioPage = () => {
             <ToolkitGrid />
           </section>
 
-          {/* Section 02 - Soft Skills */}
+          {/* Section 02. Soft Skills. */}
           <section
             id="skills"
             className="flex scroll-mt-[90px] flex-col gap-6">
@@ -180,7 +180,7 @@ const StudioPage = () => {
             />
           </div>
 
-          {/* Section 03 - Projects */}
+          {/* Section 03. Projects. */}
           <section
             id="projects"
             className="flex scroll-mt-[90px] flex-col gap-6">

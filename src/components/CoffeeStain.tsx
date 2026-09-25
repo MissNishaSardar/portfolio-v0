@@ -5,10 +5,7 @@ type CoffeeStainProps = {
   size?: "small" | "large";
 };
 
-export default function CoffeeStain({
-  className,
-  size = "small",
-}: CoffeeStainProps) {
+const CoffeeStain = ({ className, size = "small" }: CoffeeStainProps) => {
   const isSmall = size === "small";
 
   return (
@@ -25,7 +22,7 @@ export default function CoffeeStain({
         className="absolute inset-0 size-full"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        {/* Outer ring - slightly elliptical, uneven thickness via two strokes */}
+        {/* Outer ring. Slightly elliptical, uneven thickness via two strokes. */}
         <g className="text-amber-900 dark:text-amber-200/90">
           <ellipse
             cx="75"
@@ -38,7 +35,7 @@ export default function CoffeeStain({
             opacity={isSmall ? "0.07" : "0.05"}
             transform="rotate(-6 75 75)"
           />
-          {/* Offset inner echo - cup shifted */}
+          {/* Offset inner echo. Cup shifted. */}
           <ellipse
             cx="77"
             cy="73"
@@ -53,7 +50,7 @@ export default function CoffeeStain({
           />
         </g>
 
-        {/* Broken crescent where cup handle lifted - subtle gap */}
+        {/* Broken crescent where cup handle lifted. Subtle gap. */}
         <path
           d="M 38 18 A 68 66 0 0 1 52 12"
           stroke="currentColor"
@@ -74,7 +71,7 @@ export default function CoffeeStain({
           opacity="0.055"
         />
 
-        {/* Center wash - irregular blob, not circle */}
+        {/* Center wash. Irregular blob, not circle. */}
         <path
           d="M 58 72 C 58 54, 88 52, 92 71 C 92 90, 62 92, 58 72 Z"
           fill="currentColor"
@@ -91,7 +88,7 @@ export default function CoffeeStain({
           opacity="0.015"
         />
 
-        {/* Spray - scattered micro droplets like real desk */}
+        {/* Spray. Scattered micro droplets like real desk. */}
         <g className="text-amber-900 dark:text-amber-200">
           <circle
             cx="108"
@@ -134,4 +131,6 @@ export default function CoffeeStain({
       </svg>
     </div>
   );
-}
+};
+
+export default CoffeeStain;

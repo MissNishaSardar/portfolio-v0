@@ -93,21 +93,19 @@ export const defaultSoftSkillMeta = {
 
 export const skillJokes: Record<string, string> = {
   React: "React made me believe in reusable relationships \u26A1\uFE0F",
-  "Next.js":
-    "Next.js never ghosts you \u2014 it always SSR's back \uD83D\uDE0F",
+  "Next.js": "Next.js never ghosts you, it always SSR's back \uD83D\uDE0F",
   TypeScript: "'any' is a bad word here. TypeScript said so \uD83E\uDD2D",
-  "Tailwind CSS":
-    "47 Tailwind classes later... just one more div! \uD83C\uDFA8",
+  "Tailwind CSS": "47 Tailwind classes later. Just one more div! \uD83C\uDFA8",
   Bootstrap:
     "Bootstrap held my first layout together like duct tape \uD83D\uDCAA",
-  "shadcn/ui": "Copy, paste, pretend I designed it \u2014 shhh \uD83E\uDD2B",
+  "shadcn/ui": "Copy, paste, pretend I designed it, shhh \uD83E\uDD2B",
   Jotai: "So atomic even physics is jealous \u269B\uFE0F",
   Zod: "Zod validates my life choices too \u2705",
   "Node.js": "Runs on caffeine and event loops \u2615",
   PostgreSQL: "Never forgets. Like my linter \uD83D\uDC18",
   SQLite: "Whole DB in one file. Wild \uD83D\uDCC1",
   Prisma: "Makes SQL feel like TypeScript magic \u2728",
-  "REST APIs": "Still RESTing, never stressed \u2014 200 OK \uD83D\uDE0C",
+  "REST APIs": "Still RESTing, never stressed, 200 OK \uD83D\uDE0C",
   Git: "git commit -m 'fix: fixed the fix' \uD83D\uDD01",
   GitHub: "My second home. Stars are rent \u2B50",
   "CI/CD": "Push, pray, green tick, repeat \uD83D\uDE4F",

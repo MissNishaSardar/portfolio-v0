@@ -6,7 +6,7 @@ import { skills } from "@/data/portfolio";
 import { defaultSkillMeta, skillJokes, skillMeta } from "@/lib/skillsMeta";
 import { cn } from "@/lib/utils";
 
-export default function ToolkitGrid() {
+const ToolkitGrid = () => {
   const allSkills = skills.flatMap((category) => category.skills);
   const row1 = allSkills.slice(0, 7);
   const row2 = allSkills.slice(7, 13);
@@ -79,4 +79,6 @@ export default function ToolkitGrid() {
       ))}
     </div>
   );
-}
+};
+
+export default ToolkitGrid;

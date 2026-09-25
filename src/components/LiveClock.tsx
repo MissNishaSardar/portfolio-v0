@@ -11,7 +11,7 @@ type Mood = {
 function getMood(hour: number): Mood {
   // hour 0-23
   if (hour >= 6 && hour <= 10) {
-    return { message: "Still dreaming in code... \uD83D\uDCA4" };
+    return { message: "Still dreaming in code. \uD83D\uDCA4" };
   }
   if (hour >= 13 && hour <= 15) {
     return { message: "Planning tonight's build \uD83D\uDCDD" };
@@ -26,11 +26,11 @@ function getMood(hour: number): Mood {
     return { message: "Deep in code. The world is quiet. \uD83D\uDCBB" };
   }
   if (hour >= 3 && hour < 6) {
-    return { message: "One more feature... then sleep. Maybe. \uD83E\uDD89" };
+    return { message: "One more feature. Then sleep. Maybe. \uD83E\uDD89" };
   }
   // Gap fillers that keep the rhythm
   if (hour === 11) {
-    return { message: "Second coffee. Ideas brewing... \u2615" };
+    return { message: "Second coffee. Ideas brewing. \u2615" };
   }
   if (hour === 12) {
     return { message: "Midday momentum. Keep shipping! \u26A1" };
@@ -63,13 +63,13 @@ type LiveClockProps = {
   hideMobile?: boolean;
 };
 
-export default function LiveClock({
+const LiveClock = ({
   variant = "default",
   timeZone,
   className,
   hideDesktop = false,
   hideMobile = false,
-}: LiveClockProps) {
+}: LiveClockProps) => {
   const effectiveTimeZone =
     timeZone ?? (variant === "footer" ? "Asia/Kolkata" : undefined);
 
@@ -79,7 +79,7 @@ export default function LiveClock({
     if (hideDesktop && hideMobile) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setNow(new Date());
-    // Align to next minute then tick every minute (hour+minute display only)
+    // Align to next minute then tick every minute. Display shows hour and minute only.
     let intervalId: ReturnType<typeof setInterval> | undefined;
     const msToNextMinute = 60000 - (Date.now() % 60000);
     const timeoutId = setTimeout(() => {
@@ -144,7 +144,7 @@ export default function LiveClock({
           className,
         )}
         aria-live="polite"
-        aria-label={`Current time ${displayTime} (Indian Standard Time), ${labelMood}`}>
+        aria-label={`Current time ${displayTime} Indian Standard Time, ${labelMood}`}>
         <span className="inline-flex items-center gap-1.5 sm:gap-2">
           <span
             className="inline-block size-2 shrink-0 animate-pulse rounded-full bg-emerald-500"
@@ -158,7 +158,7 @@ export default function LiveClock({
           </time>
           {isIST ?
             <abbr
-              title="Indian Standard Time (UTC+5:30)"
+              title="Indian Standard Time, UTC+5:30"
               className="cursor-help font-medium tracking-tight no-underline">
               IST
             </abbr>
@@ -197,7 +197,7 @@ export default function LiveClock({
 
   return (
     <>
-      {/* Desktop: shared equally on header and body - straddles header bottom */}
+      {/* Desktop: shared equally on header and body. Straddles header bottom. */}
       {!hideDesktop && (
         <div
           className="border-glass-border bg-glass absolute right-6 bottom-0 z-20 hidden translate-y-1/2 flex-col items-end gap-1 rounded-xl border px-4 py-2 text-right shadow-sm backdrop-blur-md sm:flex"
@@ -217,7 +217,9 @@ export default function LiveClock({
       )}
     </>
   );
-}
+};
+
+export default LiveClock;
 
 // Export helper for testing
 export { getHourInTimeZone, getMood };

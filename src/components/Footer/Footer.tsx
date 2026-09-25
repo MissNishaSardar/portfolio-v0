@@ -34,14 +34,14 @@ const Footer = () => {
           </span>
         </div>
 
-        {/* Center: quote - single row, hidden on mobile */}
+        {/* Center: quote. Single row, hidden on mobile. */}
         <figure className="hidden min-w-0 flex-1 flex-row items-center justify-center gap-2 text-center sm:flex">
           <blockquote className="text-muted-foreground/60 truncate text-xs">
             &quot;Time is the one thing none of us can make more of, so it means
             a lot for spending a bit of yours here 🌿.&quot;
           </blockquote>
           <figcaption className="text-muted-foreground/50 shrink-0 text-[11px] italic">
-            - Nisha
+            Nisha
           </figcaption>
         </figure>
 
