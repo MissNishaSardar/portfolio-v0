@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import { cn } from "@/lib/utils";
 
 type CoffeeStainProps = {
@@ -7,6 +9,7 @@ type CoffeeStainProps = {
 
 const CoffeeStain = ({ className, size = "small" }: CoffeeStainProps) => {
   const isSmall = size === "small";
+  const circleId = `coffee-stain-circle-${useId().replace(/:/g, "")}`;
 
   return (
     <div
@@ -49,6 +52,27 @@ const CoffeeStain = ({ className, size = "small" }: CoffeeStainProps) => {
             transform="rotate(-4 77 73)"
           />
         </g>
+
+        {/* Circular label. Repeating words around the ring. */}
+        <defs>
+          <path
+            id={circleId}
+            d="M 75 17 A 58 58 0 1 1 74.9 17"
+            fill="none"
+          />
+        </defs>
+        <text
+          className="fill-muted-foreground"
+          fontSize="8.5"
+          letterSpacing="2"
+          opacity="0.4">
+          <textPath
+            href={`#${circleId}`}
+            textLength="363"
+            lengthAdjust="spacingAndGlyphs">
+            the original powerhouse • the original powerhouse •
+          </textPath>
+        </text>
 
         {/* Broken crescent where cup handle lifted. Subtle gap. */}
         <path

@@ -56,11 +56,12 @@ function getHourInTimeZone(date: Date, timeZone?: string): number {
 }
 
 type LiveClockProps = {
-  variant?: "default" | "footer";
+  variant?: "default" | "footer" | "pill";
   timeZone?: string;
   className?: string;
   hideDesktop?: boolean;
   hideMobile?: boolean;
+  hideMood?: boolean;
 };
 
 const LiveClock = ({
@@ -69,6 +70,7 @@ const LiveClock = ({
   className,
   hideDesktop = false,
   hideMobile = false,
+  hideMood = false,
 }: LiveClockProps) => {
   const effectiveTimeZone =
     timeZone ?? (variant === "footer" ? "Asia/Kolkata" : undefined);
@@ -93,6 +95,17 @@ const LiveClock = ({
   }, [hideDesktop, hideMobile]);
 
   if (!now) {
+    if (variant === "pill") {
+      return (
+        <div
+          aria-hidden="true"
+          className={cn(
+            "bg-muted/40 inline-flex h-9 w-64 animate-pulse items-center gap-2 rounded-full",
+            className,
+          )}
+        />
+      );
+    }
     if (variant === "footer") {
       return (
         <div
@@ -144,12 +157,18 @@ const LiveClock = ({
           className,
         )}
         aria-live="polite"
-        aria-label={`Current time ${displayTime} Indian Standard Time, ${labelMood}`}>
+        aria-label={
+          hideMood ?
+            `Current time ${displayTime} Indian Standard Time`
+          : `Current time ${displayTime} Indian Standard Time, ${labelMood}`
+        }>
         <span className="inline-flex items-center gap-1.5 sm:gap-2">
-          <span
-            className="inline-block size-2 shrink-0 animate-pulse rounded-full bg-emerald-500"
-            aria-hidden="true"
-          />
+          {!hideMood ?
+            <span
+              className="inline-block size-2 shrink-0 animate-pulse rounded-full bg-emerald-500"
+              aria-hidden="true"
+            />
+          : null}
           <time
             dateTime={now.toISOString()}
             suppressHydrationWarning
@@ -164,14 +183,58 @@ const LiveClock = ({
             </abbr>
           : null}
         </span>
-        <span
-          aria-hidden="true"
-          className="text-muted-foreground/40 hidden sm:inline">
-          ·
-        </span>
-        <span className="text-muted-foreground text-xs leading-tight font-normal sm:text-xs">
-          {labelMood}
-        </span>
+        {!hideMood ?
+          <>
+            <span
+              aria-hidden="true"
+              className="text-muted-foreground/40 hidden sm:inline">
+              ·
+            </span>
+            <span className="text-muted-foreground text-xs leading-tight font-normal sm:text-xs">
+              {labelMood}
+            </span>
+          </>
+        : null}
+      </div>
+    );
+  }
+
+  if (variant === "pill") {
+    return (
+      <div
+        className={cn(
+          "border-glass-border bg-glass inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-full border px-4 py-2 font-mono text-xs shadow-sm backdrop-blur-md",
+          className,
+        )}
+        aria-live="polite"
+        aria-label={
+          hideMood ?
+            `Current time ${displayTime}`
+          : `Current time ${displayTime}, ${labelMood}`
+        }>
+        {!hideMood ?
+          <span
+            className="inline-block size-2 shrink-0 animate-pulse rounded-full bg-emerald-500"
+            aria-hidden="true"
+          />
+        : null}
+        <time
+          dateTime={now.toISOString()}
+          suppressHydrationWarning
+          className="text-foreground font-semibold tracking-tight">
+          {timeString}
+        </time>
+        {!hideMood ?
+          <>
+            <span
+              aria-hidden="true"
+              className="text-muted-foreground/50">
+              ·
+            </span>
+            <span className="text-muted-foreground truncate">{labelMood}</span>
+            <span aria-hidden="true">🔥</span>
+          </>
+        : null}
       </div>
     );
   }
