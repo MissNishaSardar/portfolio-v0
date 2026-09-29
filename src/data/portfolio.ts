@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-export type SocialIcon = "github" | "linkedin" | "mail";
+export type SocialIcon = "github" | "linkedin" | "x" | "mail";
 
 export type SocialLink = {
   label: string;
@@ -53,8 +53,7 @@ export const profile = {
 
 export const navLinks: { label: string; href: Route }[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Studio", href: "/studio" },
+  { label: "Handbook", href: "/handbook" },
 
   { label: "Contact", href: "/contact" },
 ];
@@ -71,9 +70,9 @@ export const socials: SocialLink[] = [
     icon: "linkedin",
   },
   {
-    label: "Email",
-    href: `mailto:${profile.email}`,
-    icon: "mail",
+    label: "X",
+    href: "https://x.com/MsNishaSardar",
+    icon: "x",
   },
 ];
 
@@ -149,6 +148,46 @@ export const softSkills: SoftSkill[] = [
     description:
       "If I say 'I'll look into it,' it goes on my list, not into the void. Nobody should have to ask twice to count on me.",
     icon: "doing-said",
+  },
+];
+
+export type JourneyMilestone = {
+  eyebrow: string;
+  title: string;
+  text: string;
+  tags: string[];
+};
+
+export const journey: JourneyMilestone[] = [
+  {
+    eyebrow: "2021",
+    title: "First glance at code",
+    text: "Saw programming as a game. Curiosity started before any plan to become a developer.",
+    tags: ["Curiosity", "Play"],
+  },
+  {
+    eyebrow: "2023",
+    title: "Deep immersion",
+    text: "Started learning properly. Chose the web path and kept a steady daily habit.",
+    tags: ["Habit", "Consistency"],
+  },
+  {
+    eyebrow: "WBSU",
+    title: "Science in parallel",
+    text: "Studied Zoology. Animal structures, behaviors, and evolution trained patience for messy systems.",
+    tags: ["Zoology", "Research", "Patience"],
+  },
+  {
+    eyebrow: "Now",
+    title: "Real builds",
+    text: "Applying toolkit plus soft skills in real projects. Shipping builds that solve real problems.",
+    tags: ["Craft", "Shipping"],
+  },
+  {
+    eyebrow: "Next",
+    title: "Ship and learn",
+    text: "Keep building fast, accessible, and delightful web experiences. Open to roles and feedback.",
+    tags: ["Accessibility", "Growth"],
   },
 ];
 

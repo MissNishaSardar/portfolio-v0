@@ -6,8 +6,10 @@ const nextConfig: NextConfig = {
   typedRoutes: true,
   async redirects() {
     return [
-      { source: "/skills", destination: "/studio", permanent: false },
-      { source: "/projects", destination: "/studio", permanent: false },
+      { source: "/skills", destination: "/handbook", permanent: false },
+      { source: "/projects", destination: "/handbook", permanent: false },
+      { source: "/about", destination: "/", permanent: false },
+      { source: "/studio", destination: "/handbook", permanent: false },
     ];
   },
 };

@@ -4,18 +4,19 @@ import { useEffect, useState } from "react";
 import { Sparkles } from "lucide-react";
 
 import ProjectCard from "@/components/ProjectCard";
+import JourneyTimeline from "@/components/JourneyTimeline";
 import SoftSkillsGrid from "@/components/SoftSkillsGrid";
 import ToolkitGrid from "@/components/ToolkitGrid";
 import { projects } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-type SectionId = "toolkit" | "skills" | "projects";
+type SectionId = "toolkit" | "skills" | "projects" | "journey";
 
-const StudioPage = () => {
+const HandbookPage = () => {
   const [active, setActive] = useState<SectionId>("toolkit");
 
   useEffect(() => {
-    const ids: SectionId[] = ["toolkit", "skills", "projects"];
+    const ids: SectionId[] = ["toolkit", "skills", "projects", "journey"];
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -50,25 +51,14 @@ const StudioPage = () => {
     <div className="flex flex-1 flex-col gap-10 pt-4 pb-16 sm:pt-6">
       {/* Page heading. Left aligned, max width about 720px. */}
       <div className="flex w-full max-w-[720px] flex-col items-start gap-3 text-left">
-        <span className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase">
-          Studio
-        </span>
         <h1
-          id="studio-heading"
+          id="handbook-heading"
           className="text-foreground text-left text-[clamp(2rem,4.2vw,3rem)] leading-[0.95] font-extrabold tracking-[-0.03em] text-balance">
-          What I use &{" "}
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text font-serif font-normal text-transparent italic dark:from-sky-400 dark:to-indigo-400">
-              what I build.
-            </span>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-1 left-0 h-[3px] w-full bg-gradient-to-r from-sky-500 to-indigo-600 dark:from-sky-400 dark:to-indigo-400"
-            />
-          </span>
+          My craft and my path.
         </h1>
         <p className="text-muted-foreground max-w-xl text-left text-sm leading-relaxed sm:text-[15px]">
-          Tools. Mindsets. Builds. Explore the work and the process behind it.
+          The tools I use, the way I think, and the projects I create. Take a
+          look at the work and the stories behind how they came to life.
         </p>
         <span
           aria-hidden="true"
@@ -92,6 +82,7 @@ const StudioPage = () => {
                   { id: "toolkit", label: "Toolkit", num: "01" },
                   { id: "skills", label: "Soft Skills", num: "02" },
                   { id: "projects", label: "Projects", num: "03" },
+                  { id: "journey", label: "Journey", num: "04" },
                 ] as const
               ).map(({ id, label, num }) => {
                 const isActive = active === id;
@@ -209,10 +200,30 @@ const StudioPage = () => {
               ))}
             </div>
           </section>
+
+          {/* Section 04. Journey. */}
+          <section
+            id="journey"
+            className="flex scroll-mt-[90px] flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-baseline gap-3">
+                <span className="text-muted-foreground/50 font-mono text-xs">
+                  04
+                </span>
+                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  Journey
+                </h2>
+              </div>
+              <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
+                The path so far, from first curiosity to full-stack craft.
+              </p>
+            </div>
+            <JourneyTimeline />
+          </section>
         </div>
       </div>
     </div>
   );
 };
 
-export default StudioPage;
+export default HandbookPage;
