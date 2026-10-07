@@ -17,27 +17,31 @@ const HandbookPage = () => {
 
   useEffect(() => {
     const ids: SectionId[] = ["toolkit", "skills", "projects", "journey"];
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    const offset = 140;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length === 0) return;
-        const topMost = [...visible].sort(
-          (a, b) => b.intersectionRatio - a.intersectionRatio,
-        )[0];
-        setActive(topMost.target.id as SectionId);
-      },
-      {
-        rootMargin: "-90px 0px -60% 0px",
-        threshold: [0, 0.1, 0.5, 1],
-      },
-    );
+    const update = () => {
+      const y = window.scrollY + offset;
+      let current: SectionId = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (top <= y) current = id;
+      }
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 40;
+      if (nearBottom) current = ids[ids.length - 1];
+      setActive((prev) => (prev === current ? prev : current));
+    };
 
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   const linkBase =

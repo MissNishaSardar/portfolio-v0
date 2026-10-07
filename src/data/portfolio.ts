@@ -54,8 +54,6 @@ export const profile = {
 export const navLinks: { label: string; href: Route }[] = [
   { label: "Home", href: "/" },
   { label: "Handbook", href: "/handbook" },
-
-  { label: "Contact", href: "/contact" },
 ];
 
 export const socials: SocialLink[] = [
@@ -161,32 +159,32 @@ export type JourneyMilestone = {
 export const journey: JourneyMilestone[] = [
   {
     eyebrow: "2021",
-    title: "First glance at code",
-    text: "Saw programming as a game. Curiosity started before any plan to become a developer.",
+    title: "It started as a game",
+    text: "That is when I first touched HTML and CSS and explored it all out of pure curiosity. It felt like solving a puzzle. No career plans. No roadmap.",
     tags: ["Curiosity", "Play"],
   },
   {
     eyebrow: "2023",
-    title: "Deep immersion",
-    text: "Started learning properly. Chose the web path and kept a steady daily habit.",
-    tags: ["Habit", "Consistency"],
+    title: "Learning every day",
+    text: "I got serious about it. I picked web development and made a habit of practicing a little every day.",
+    tags: ["Habit", "Web"],
   },
   {
     eyebrow: "WBSU",
-    title: "Science in parallel",
-    text: "Studied Zoology. Animal structures, behaviors, and evolution trained patience for messy systems.",
-    tags: ["Zoology", "Research", "Patience"],
+    title: "Zoology on the side",
+    text: "While all that was going on, I was studying Zoology out of curiosity for organisms. I learned how animals are built, how they behave, and how they change over time.",
+    tags: ["Zoology", "Patience"],
   },
   {
     eyebrow: "Now",
-    title: "Real builds",
-    text: "Applying toolkit plus soft skills in real projects. Shipping builds that solve real problems.",
-    tags: ["Craft", "Shipping"],
+    title: "Building real projects",
+    text: "Now I work on real projects for real people and learn more from each one. I use what I have learned to build things that solve problems people actually have.",
+    tags: ["Projects", "Craft"],
   },
   {
     eyebrow: "Next",
-    title: "Ship and learn",
-    text: "Keep building fast, accessible, and delightful web experiences. Open to roles and feedback.",
+    title: "Keep building",
+    text: "I keep making websites that are fast and easy for everyone to use. Got a role in mind or thoughts on my work? I would love to hear it.",
     tags: ["Accessibility", "Growth"],
   },
 ];

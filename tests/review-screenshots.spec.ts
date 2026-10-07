@@ -3,7 +3,6 @@ import { test, type Page } from "@playwright/test";
 const routes = [
   { name: "home", path: "/" },
   { name: "handbook", path: "/handbook" },
-  { name: "contact", path: "/contact" },
 ];
 
 async function shoot(

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, ExternalLink, FolderGit2 } from "lucide-react";
+import { ExternalLink, FolderGit2 } from "lucide-react";
 import { motion } from "motion/react";
 
 import { Badge } from "@/components/shadcnui/badge";
@@ -47,8 +47,6 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
             aria-hidden="true"
             className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_60%)]"
           />
-
-          <ArrowUpRight className="absolute top-3 right-3 size-5 text-white/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         </div>
 
         <CardContent className="flex flex-1 flex-col gap-3">

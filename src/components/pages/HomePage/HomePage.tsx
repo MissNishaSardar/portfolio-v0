@@ -1,16 +1,24 @@
 "use client";
 
-import { ArrowRight, Check, Copy } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import CurtainIntro from "@/components/CurtainIntro";
-import CoffeeStain from "@/components/CoffeeStain";
 import LiveClock from "@/components/LiveClock";
-import { Button } from "@/components/shadcnui/button";
-import { profile } from "@/data/portfolio";
+import { GithubIcon, LinkedinIcon, XIcon } from "@/components/SocialLinks";
+import { profile, socials, SocialIcon } from "@/data/portfolio";
+
+const socialIcons: Record<
+  SocialIcon,
+  (props: { size?: number; className?: string }) => React.ReactNode
+> = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  x: XIcon,
+  mail: Mail,
+};
 
 let hasShownForThisHardReload = false;
 
@@ -23,55 +31,6 @@ const favorites = [
 const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
   const [heroIntro, setHeroIntro] = useState<boolean | null>(null);
-  const [copied, setCopied] = useState(false);
-  const [copyFailed, setCopyFailed] = useState(false);
-  const copyTimer = useRef<number | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (copyTimer.current !== null) {
-        window.clearTimeout(copyTimer.current);
-      }
-    };
-  }, []);
-
-  const handleCopyEmail = async () => {
-    let ok = false;
-    try {
-      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(profile.email);
-        ok = true;
-      } else {
-        throw new Error("clipboard unavailable");
-      }
-    } catch {
-      try {
-        const area = document.createElement("textarea");
-        area.value = profile.email;
-        area.setAttribute("readonly", "");
-        area.style.position = "absolute";
-        area.style.left = "-9999px";
-        document.body.appendChild(area);
-        area.select();
-        const result = document.execCommand("copy");
-        area.remove();
-        ok = result !== false;
-      } catch {
-        ok = false;
-      }
-    }
-    if (copyTimer.current !== null) {
-      window.clearTimeout(copyTimer.current);
-      copyTimer.current = null;
-    }
-    setCopied(ok);
-    setCopyFailed(!ok);
-    copyTimer.current = window.setTimeout(() => {
-      setCopied(false);
-      setCopyFailed(false);
-      copyTimer.current = null;
-    }, 2000);
-  };
 
   useEffect(() => {
     const nav = performance.getEntriesByType("navigation")[0] as
@@ -95,11 +54,13 @@ const HomePage = () => {
     setHeroIntro(should);
   }, []);
 
-  const handleCurtainComplete = () => {
+  const handleCurtainComplete = useCallback(() => {
     hasShownForThisHardReload = true;
-  };
+    setHeroIntro(false);
+  }, []);
 
   const isIntroActive = heroIntro === true && !shouldReduceMotion;
+  const heroReady = !isIntroActive;
   const baseDelay = isIntroActive ? 5.35 : 0.12;
 
   const easeOut = [0.16, 1, 0.3, 1] as const;
@@ -107,7 +68,10 @@ const HomePage = () => {
 
   const fadeUp = (delay: number) => ({
     initial: shouldReduceMotion ? false : { opacity: 0, y: 12 },
-    animate: shouldReduceMotion || !resolved ? {} : { opacity: 1, y: 0 },
+    animate:
+      shouldReduceMotion || !resolved ? {}
+      : heroReady ? { opacity: 1, y: 0 }
+      : { opacity: 0, y: 12 },
     transition: { delay, duration: 0.55, ease: easeOut },
   });
 
@@ -117,34 +81,16 @@ const HomePage = () => {
         <CurtainIntro onComplete={handleCurtainComplete} />
       : null}
 
-      <section className="relative grid flex-1 grid-cols-1 items-center gap-12 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+      <section className="relative grid flex-1 grid-cols-1 content-center items-stretch gap-12 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.10),transparent_65%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
         />
-        {/* Coffee stain, carried over from About, desk mood */}
-        <motion.div
-          {...fadeUp(baseDelay + 0.05)}
-          aria-hidden="true"
-          className="pointer-events-none absolute right-2 bottom-2 z-0 hidden opacity-45 sm:block dark:opacity-45">
-          <CoffeeStain
-            size="small"
-            className="opacity-100 dark:opacity-100"
-          />
-        </motion.div>
-        <motion.div
-          {...fadeUp(baseDelay + 0.05)}
-          aria-hidden="true"
-          className="pointer-events-none absolute right-1/2 bottom-0 z-0 translate-x-1/2 opacity-25 sm:hidden dark:opacity-30">
-          <CoffeeStain
-            size="small"
-            className="scale-[0.85] opacity-40 dark:opacity-40"
-          />
-        </motion.div>
-
-        {/* Left: clock, portrait, name, actions */}
-        <div className="relative z-10 flex flex-col items-center gap-5 text-center">
-          <motion.div {...fadeUp(baseDelay)}>
+        {/* Left: clock, portrait, name, actions, social */}
+        <div className="relative z-10 flex flex-col items-center justify-start gap-5 text-center">
+          <motion.div
+            {...fadeUp(baseDelay)}
+            className="-mt-[3px]">
             <LiveClock variant="pill" />
           </motion.div>
 
@@ -174,72 +120,56 @@ const HomePage = () => {
 
           <motion.div
             {...fadeUp(baseDelay + 0.2)}
-            className="flex flex-wrap items-center justify-center gap-3">
-            <Button
-              render={<Link href="/handbook#projects" />}
-              nativeButton={false}
-              size="lg"
-              className="group gap-2 rounded-full px-7 py-5 text-[15px] shadow-md hover:shadow-lg">
-              View Projects
-              <ArrowRight
-                data-icon="inline-end"
-                className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </Button>
-            <Button
-              type="button"
-              onClick={handleCopyEmail}
-              variant="outline"
-              size="lg"
-              aria-live="polite"
-              title={profile.email}
-              className="border-glass-border bg-glass hover:bg-glass gap-2 rounded-full px-7 py-5 text-[15px] backdrop-blur-md">
-              {copied ?
-                <Check
-                  data-icon="inline-start"
-                  className="size-4"
-                />
-              : <Copy
-                  data-icon="inline-start"
-                  className="size-4"
-                />
-              }
-              {copied ?
-                "Copied"
-              : copyFailed ?
-                "Copy failed"
-              : "Copy Email"}
-            </Button>
+            className="mt-auto flex w-full flex-wrap items-center justify-center gap-3 px-2 sm:px-4">
+            <a
+              href={`mailto:${profile.email}`}
+              className="group text-foreground inline-flex items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 font-mono text-[12px] tracking-wide whitespace-nowrap transition-all duration-300 hover:bg-white/[0.1] sm:text-[13px] dark:border-white/10">
+              <Mail className="text-muted-foreground size-4 shrink-0" />
+              Feel free to reach
+              <ArrowUpRight className="text-muted-foreground size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
+              {socials.map(({ label, href, icon }) => {
+                const Icon = socialIcons[icon];
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    title={label}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-muted-foreground hover:text-foreground inline-flex size-8 items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-0.5 sm:size-9">
+                    <Icon size={17} />
+                  </a>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
 
-        {/* Right: greeting, headline, bio, favorites */}
-        <div className="relative z-10 flex flex-col items-start gap-5 text-left">
-          <motion.p
-            {...fadeUp(baseDelay + 0.1)}
-            className="text-muted-foreground font-cursive text-3xl">
-            hello there
-          </motion.p>
-
+        {/* Right: headline, bio, favorites */}
+        <div className="relative z-10 flex w-full max-w-xl flex-col items-start justify-start gap-5 text-left">
           <motion.h1
             {...fadeUp(baseDelay + 0.16)}
-            className="text-foreground max-w-[22ch] text-[clamp(1.4rem,2.6vw,2.1rem)] leading-[1.15] font-bold tracking-[-0.015em] text-balance">
-            A mind for impact, a spirit that embraced creativity, clarity and
-            inspiration.
+            className="text-foreground/90 w-full text-justify font-mono text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.7] font-normal tracking-[0.01em]">
+            A real thinker, creative soul who brings clarity and inspiration,
+            standing out as a rare signature on the printed page of life.
           </motion.h1>
 
           <motion.p
             {...fadeUp(baseDelay + 0.22)}
-            className="text-foreground/70 max-w-xl text-[15px] leading-relaxed font-light text-pretty dark:text-zinc-400">
+            className="text-foreground/70 w-full text-justify text-[16.5px] leading-[1.75] font-light hyphens-auto dark:text-zinc-400">
             If I strip away the noise of the outside world and reflect on
             myself, I&apos;d say I&apos;m a nyctophile, as my name implies,
             moving to the rhythmic pulse of life, filled with a warm, magnetic
-            energy.
+            energy. And thus I am turning my journey into more than just
+            breathing.
           </motion.p>
 
           <motion.div
             {...fadeUp(baseDelay + 0.28)}
-            className="border-glass-border bg-glass w-full rounded-2xl border p-5 shadow-[var(--glass-shadow)] backdrop-blur-md">
+            className="border-glass-border bg-glass mt-auto w-full rounded-2xl border p-5 shadow-[var(--glass-shadow)] backdrop-blur-md">
             <h2 className="font-mono text-xs tracking-wide">
               My favorite ways to keep my soul vibrant and alive
             </h2>
