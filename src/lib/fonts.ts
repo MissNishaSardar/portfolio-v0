@@ -1,4 +1,5 @@
 import {
+  Cormorant_Garamond,
   Dancing_Script,
   Geist_Mono,
   Instrument_Serif,
@@ -29,4 +30,12 @@ export const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-instrument-serif",
+});
+
+export const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
 });

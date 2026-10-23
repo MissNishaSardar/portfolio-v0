@@ -149,8 +149,7 @@ const HandbookPage = () => {
                 </h2>
               </div>
               <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
-                How I work with people and problems &#x1F91D;, because great
-                products take more than just code &#x1F4A1;
+                What I care about &#x1F91D;
               </p>
             </div>
             <SoftSkillsGrid />
@@ -189,9 +188,7 @@ const HandbookPage = () => {
                 </h2>
               </div>
               <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
-                A collection of projects I&apos;ve loved working on, each
-                solving a real problem and teaching me something new along the
-                way.
+                Small projects, made with care. Each one taught me something.
               </p>
             </div>
             <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
@@ -219,7 +216,7 @@ const HandbookPage = () => {
                 </h2>
               </div>
               <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
-                The path so far, from first curiosity to full-stack craft.
+                Where it began, and where it&apos;s going
               </p>
             </div>
             <JourneyTimeline />

@@ -159,32 +159,32 @@ export type JourneyMilestone = {
 export const journey: JourneyMilestone[] = [
   {
     eyebrow: "2021",
-    title: "It started as a game",
-    text: "That is when I first touched HTML and CSS and explored it all out of pure curiosity. It felt like solving a puzzle. No career plans. No roadmap.",
+    title: "It all started with a puzzle",
+    text: "First contact with HTML and CSS, explored out of pure curiosity. It felt like solving a puzzle. No career plans. No roadmap.",
     tags: ["Curiosity", "Play"],
   },
   {
+    eyebrow: "2022",
+    title: "Another world on the side",
+    text: "Zoology entered the picture at WBSU. A close look at how animals are formed, how they behave, and how they change over time.",
+    tags: ["Zoology", "WBSU"],
+  },
+  {
     eyebrow: "2023",
-    title: "Learning every day",
-    text: "I got serious about it. I picked web development and made a habit of practicing a little every day.",
+    title: "Showing up every day",
+    text: "Play turned into practice. Web development became the focus, with a little time given to it every day.",
     tags: ["Habit", "Web"],
   },
   {
-    eyebrow: "WBSU",
-    title: "Zoology on the side",
-    text: "While all that was going on, I was studying Zoology out of curiosity for organisms. I learned how animals are built, how they behave, and how they change over time.",
-    tags: ["Zoology", "Patience"],
-  },
-  {
     eyebrow: "Now",
-    title: "Building real projects",
-    text: "Now I work on real projects for real people and learn more from each one. I use what I have learned to build things that solve problems people actually have.",
-    tags: ["Projects", "Craft"],
+    title: "Learning by making things",
+    text: "Turning what has been learned into finished, working sites. Each practice project teaches something new about solving problems people actually have.",
+    tags: ["Practice", "Shipping"],
   },
   {
     eyebrow: "Next",
-    title: "Keep building",
-    text: "I keep making websites that are fast and easy for everyone to use. Got a role in mind or thoughts on my work? I would love to hear it.",
+    title: "Let's build something good",
+    text: "More websites that are fast and easy for everyone to use. Got a role in mind or thoughts on the work? I'd love to hear it.",
     tags: ["Accessibility", "Growth"],
   },
 ];

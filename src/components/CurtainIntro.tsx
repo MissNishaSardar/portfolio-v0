@@ -154,8 +154,10 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-              className="text-2xl font-semibold tracking-tight">
-              &#x300C;NS&#x300D;
+              className="text-2xl font-[var(--font-instrument-serif)] font-normal italic">
+              <span className="text-muted-foreground/40">「</span>
+              NS
+              <span className="text-muted-foreground/40">」</span>
             </motion.div>
 
             {/* Welcome mask reveal. Italic serif needs extra slant breathing room. */}

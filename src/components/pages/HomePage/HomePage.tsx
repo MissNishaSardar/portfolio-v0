@@ -1,24 +1,14 @@
 "use client";
 
-import { ArrowUpRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 import CurtainIntro from "@/components/CurtainIntro";
-import LiveClock from "@/components/LiveClock";
+import { Button } from "@/components/shadcnui/button";
 import { GithubIcon, LinkedinIcon, XIcon } from "@/components/SocialLinks";
-import { profile, socials, SocialIcon } from "@/data/portfolio";
-
-const socialIcons: Record<
-  SocialIcon,
-  (props: { size?: number; className?: string }) => React.ReactNode
-> = {
-  github: GithubIcon,
-  linkedin: LinkedinIcon,
-  x: XIcon,
-  mail: Mail,
-};
+import { profile, socials } from "@/data/portfolio";
 
 let hasShownForThisHardReload = false;
 
@@ -81,117 +71,137 @@ const HomePage = () => {
         <CurtainIntro onComplete={handleCurtainComplete} />
       : null}
 
-      <section className="relative grid flex-1 grid-cols-1 content-center items-stretch gap-12 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[30rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.10),transparent_65%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.16),transparent_65%)]"
-        />
-        {/* Left: clock, portrait, name, actions, social */}
-        <div className="relative z-10 flex flex-col items-center justify-start gap-5 text-center">
+      <div className="flex flex-1 flex-col py-10 sm:py-12">
+        <div className="grid min-h-[75svh] flex-1 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,45%)_minmax(0,55%)]">
+          {/* Left: portrait. Light: framed photo card. Dark: melted into background */}
           <motion.div
             {...fadeUp(baseDelay)}
-            className="-mt-[3px]">
-            <LiveClock variant="pill" />
+            className="relative h-72 lg:h-auto">
+            <div className="absolute inset-6 overflow-hidden rounded-2xl shadow-[0_18px_48px_rgba(0,0,0,0.16),0_2px_10px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.06] dark:inset-0 dark:rounded-none dark:shadow-none dark:ring-0">
+              <Image
+                src="/nisha-2.jpg"
+                alt="Nisha Sardar, Full-Stack Developer"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-center grayscale-[20%] dark:contrast-[1.05] dark:grayscale-[35%]"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 hidden bg-[radial-gradient(75%_65%_at_34%_46%,rgba(30,58,98,0.16),transparent_75%)] dark:block"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 hidden bg-[radial-gradient(120%_115%_at_34%_46%,transparent_30%,var(--background)_92%)] dark:block"
+              />
+
+              <div
+                aria-hidden="true"
+                className="from-background/0 to-background absolute inset-0 hidden bg-gradient-to-r from-70% dark:block"
+              />
+              <div
+                aria-hidden="true"
+                className="from-background via-background/35 absolute inset-0 hidden bg-gradient-to-b via-14% to-transparent dark:block"
+              />
+              <div
+                aria-hidden="true"
+                className="from-background via-background/35 absolute inset-0 hidden bg-gradient-to-t via-14% to-transparent dark:block"
+              />
+              <div
+                aria-hidden="true"
+                className="from-background via-background/25 absolute inset-0 hidden bg-gradient-to-r via-10% to-transparent dark:block"
+              />
+            </div>
           </motion.div>
 
-          <motion.div {...fadeUp(baseDelay + 0.08)}>
-            <div className="rounded-full bg-[conic-gradient(from_210deg,#ffffff_0%,#6366f1_18%,#38bdf8_32%,#e2e8f0_55%,#ffffff_100%)] p-2 shadow-[0_0_40px_rgba(99,102,241,0.22)] dark:bg-[conic-gradient(from_210deg,#1c1c24_0%,#6366f1_16%,#38bdf8_28%,#1c1c24_42%,#1c1c24_100%)] dark:shadow-[0_0_50px_rgba(99,102,241,0.25)]">
-              <div className="bg-muted overflow-hidden rounded-full">
-                <Image
-                  src="/nisha.jpg"
-                  alt="Nisha Sardar, Full-Stack Developer"
-                  width={576}
-                  height={576}
-                  priority
-                  sizes="(max-width: 640px) 240px, 288px"
-                  className="aspect-square size-60 h-auto w-full object-cover sm:size-72"
+          {/* Right: copy, contact, favorites */}
+          <div className="nocturne font-nocturne flex flex-col items-center justify-center gap-6 px-6 py-10 text-center sm:px-10 lg:px-14 lg:py-12">
+            <motion.p
+              {...fadeUp(baseDelay + 0.18)}
+              className="border-nocturne-border text-nocturne-dim rounded-full border px-5 py-2 text-[10.5px] font-semibold tracking-[0.26em] whitespace-nowrap uppercase sm:text-[12px] sm:tracking-[0.3em]">
+              {profile.name} | Kolkata, India
+            </motion.p>
+
+            <motion.p
+              {...fadeUp(baseDelay + 0.3)}
+              className="text-nocturne-text w-full text-[19px] leading-[1.72] font-medium sm:text-[25px]">
+              If It had to strip away the noise of the outside world and{" "}
+              <em className="text-nocturne-accent italic">mirror</em> me, then
+              it would be better to say someone who maybe a less talkative but
+              invests her reflection on everything she touches. And thus her
+              journey turns into more than just breathing.
+            </motion.p>
+
+            <motion.div
+              {...fadeUp(baseDelay + 0.36)}
+              className="mt-2 flex w-full flex-col items-center gap-4 pt-2">
+              <p className="text-nocturne-dim text-[11px] tracking-[0.3em] uppercase sm:text-[12px]">
+                My favorite ways to keep my soul vibrant and alive
+              </p>
+              <div className="relative flex w-full flex-wrap justify-center gap-x-6 gap-y-8 sm:gap-x-14">
+                <span
+                  aria-hidden="true"
+                  className="via-nocturne-line absolute top-[23px] right-[8%] left-[8%] hidden h-px bg-gradient-to-r from-transparent to-transparent sm:block"
                 />
+                {favorites.map((f, i) => (
+                  <div
+                    key={f.label}
+                    className="relative flex flex-col items-center">
+                    <span
+                      aria-hidden="true"
+                      className="text-base leading-none">
+                      {f.emoji}
+                    </span>
+                    <span
+                      style={{ animationDelay: `${i * 1.1}s` }}
+                      className="animate-twinkle bg-nocturne-dot mt-1 size-[7px] rounded-full shadow-[0_0_12px_3px_var(--nocturne-glow)]"
+                    />
+                    <span className="text-nocturne-dim mt-2.5 text-[9.5px] tracking-[0.16em] whitespace-nowrap uppercase sm:text-[11px]">
+                      {f.label}
+                    </span>
+                  </div>
+                ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.p
-            {...fadeUp(baseDelay + 0.14)}
-            className="text-muted-foreground font-mono text-xs tracking-[3px] uppercase">
-            Nisha Sardar{" "}
-            <span className="text-sky-500 dark:text-sky-400">|</span> Kolkata,
-            India
-          </motion.p>
-
-          <motion.div
-            {...fadeUp(baseDelay + 0.2)}
-            className="mt-auto flex w-full flex-wrap items-center justify-center gap-3 px-2 sm:px-4">
-            <a
-              href={`mailto:${profile.email}`}
-              className="group text-foreground inline-flex items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 font-mono text-[12px] tracking-wide whitespace-nowrap transition-all duration-300 hover:bg-white/[0.1] sm:text-[13px] dark:border-white/10">
-              <Mail className="text-muted-foreground size-4 shrink-0" />
-              Feel free to reach
-              <ArrowUpRight className="text-muted-foreground size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
-              {socials.map(({ label, href, icon }) => {
-                const Icon = socialIcons[icon];
-                return (
+            <motion.div
+              {...fadeUp(baseDelay + 0.42)}
+              className="flex flex-wrap items-center justify-center gap-3">
+              <Button
+                render={<a href={`mailto:${profile.email}`} />}
+                nativeButton={false}
+                size="lg"
+                className="nocturne-ghost border-nocturne-border text-nocturne-text hover:border-nocturne-accent/70 hover:text-foreground h-auto rounded-full bg-transparent px-6 py-3 text-[17px] italic shadow-none hover:bg-transparent">
+                <Mail />
+                Feel free to reach
+              </Button>
+              <div className="flex items-center gap-1">
+                {socials.map((s) => (
                   <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    title={label}
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
                     target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-muted-foreground hover:text-foreground inline-flex size-8 items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-0.5 sm:size-9">
-                    <Icon size={17} />
+                    rel="noreferrer"
+                    className="text-nocturne-dim hover:text-nocturne-accent inline-flex size-9 items-center justify-center rounded-full transition-colors">
+                    {s.icon === "github" ?
+                      <GithubIcon size={17} />
+                    : null}
+                    {s.icon === "linkedin" ?
+                      <LinkedinIcon size={17} />
+                    : null}
+                    {s.icon === "x" ?
+                      <XIcon size={17} />
+                    : null}
                   </a>
-                );
-              })}
-            </div>
-          </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
-
-        {/* Right: headline, bio, favorites */}
-        <div className="relative z-10 flex w-full max-w-xl flex-col items-start justify-start gap-5 text-left">
-          <motion.h1
-            {...fadeUp(baseDelay + 0.16)}
-            className="text-foreground/90 w-full text-justify font-mono text-[clamp(1.05rem,2vw,1.35rem)] leading-[1.7] font-normal tracking-[0.01em]">
-            A real thinker, creative soul who brings clarity and inspiration,
-            standing out as a rare signature on the printed page of life.
-          </motion.h1>
-
-          <motion.p
-            {...fadeUp(baseDelay + 0.22)}
-            className="text-foreground/70 w-full text-justify text-[16.5px] leading-[1.75] font-light hyphens-auto dark:text-zinc-400">
-            If I strip away the noise of the outside world and reflect on
-            myself, I&apos;d say I&apos;m a nyctophile, as my name implies,
-            moving to the rhythmic pulse of life, filled with a warm, magnetic
-            energy. And thus I am turning my journey into more than just
-            breathing.
-          </motion.p>
-
-          <motion.div
-            {...fadeUp(baseDelay + 0.28)}
-            className="border-glass-border bg-glass mt-auto w-full rounded-2xl border p-5 shadow-[var(--glass-shadow)] backdrop-blur-md">
-            <h2 className="font-mono text-xs tracking-wide">
-              My favorite ways to keep my soul vibrant and alive
-            </h2>
-            <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              {favorites.map(({ label, emoji }) => (
-                <li
-                  key={label}
-                  className="border-glass-border bg-card/60 flex flex-col items-center gap-3 rounded-xl border p-4 text-center">
-                  <span
-                    aria-hidden="true"
-                    className="text-3xl leading-none">
-                    {emoji}
-                  </span>
-                  <span className="text-muted-foreground text-xs leading-snug">
-                    {label}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </section>
+      </div>
     </>
   );
 };

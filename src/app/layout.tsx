@@ -3,7 +3,13 @@ import { Provider as JotaiProvider } from "jotai";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
-import { dancingScript, geistMono, instrumentSerif, inter } from "@/lib/fonts";
+import {
+  cormorant,
+  dancingScript,
+  geistMono,
+  instrumentSerif,
+  inter,
+} from "@/lib/fonts";
 import type { ReactNode } from "react";
 import "./globals.css";
 
@@ -15,7 +21,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} ${instrumentSerif.variable} antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} ${cormorant.variable} ${instrumentSerif.variable} antialiased`}
       suppressHydrationWarning>
       <head>
         <script

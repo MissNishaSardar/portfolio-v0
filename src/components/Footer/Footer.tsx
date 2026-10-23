@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Footer = () => {
   const year = new Date().getFullYear();
 
@@ -9,10 +11,12 @@ const Footer = () => {
         {/* Left: ⌜NS⌟ · © year · India */}
         <div className="flex shrink-0 items-center gap-2 text-sm">
           <span
-            className="text-base font-semibold tracking-tight"
+            className="text-base font-[var(--font-instrument-serif)] font-normal italic"
             role="img"
             aria-label="Nisha Sardar">
-            ⌜NS⌟
+            <span className="text-muted-foreground/40">「</span>
+            NS
+            <span className="text-muted-foreground/40">」</span>
           </span>
           <span className="sr-only">Nisha Sardar</span>
           <span
@@ -29,8 +33,14 @@ const Footer = () => {
             &quot;Time is the one thing none of us can make more of, so it means
             a lot for spending a bit of yours here ✨.&quot;
           </blockquote>
-          <figcaption className="text-muted-foreground/50 shrink-0 text-[11px] italic">
-            Nisha
+          <figcaption className="shrink-0">
+            <Image
+              src="/signature.png"
+              alt="Nisha Sardar"
+              width={2048}
+              height={881}
+              className="h-6 w-auto opacity-70 invert dark:invert-0"
+            />
           </figcaption>
         </figure>
       </div>

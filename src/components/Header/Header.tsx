@@ -17,9 +17,11 @@ const Header = () => {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link href={"/"}>
           <h1
-            className="text-2xl font-semibold"
+            className="text-2xl font-[var(--font-instrument-serif)] font-normal italic"
             aria-label="App Name">
-            『NS』
+            <span className="text-muted-foreground/40">「</span>
+            NS
+            <span className="text-muted-foreground/40">」</span>
           </h1>
         </Link>
 
