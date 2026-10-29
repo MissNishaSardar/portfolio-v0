@@ -12,12 +12,6 @@ import { profile, socials } from "@/data/portfolio";
 
 let hasShownForThisHardReload = false;
 
-const favorites = [
-  { label: "Wandering new places", emoji: "🧭" },
-  { label: "Growing things", emoji: "🌿" },
-  { label: "Music till late", emoji: "🎵" },
-] as const;
-
 const HomePage = () => {
   const shouldReduceMotion = useReducedMotion();
   const [heroIntro, setHeroIntro] = useState<boolean | null>(null);
@@ -51,7 +45,7 @@ const HomePage = () => {
 
   const isIntroActive = heroIntro === true && !shouldReduceMotion;
   const heroReady = !isIntroActive;
-  const baseDelay = isIntroActive ? 5.35 : 0.12;
+  const baseDelay = 0.12;
 
   const easeOut = [0.16, 1, 0.3, 1] as const;
   const resolved = heroIntro !== null;
@@ -71,20 +65,26 @@ const HomePage = () => {
         <CurtainIntro onComplete={handleCurtainComplete} />
       : null}
 
-      <div className="flex flex-1 flex-col py-10 sm:py-12">
-        <div className="grid min-h-[75svh] flex-1 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,45%)_minmax(0,55%)]">
+      {/* Top padding sits 20px under bottom on purpose. main clears the fixed header with pt-20 so the photo gets equal air above and below. */}
+      <div className="flex flex-1 flex-col justify-center pt-5 pb-10 sm:pt-7 sm:pb-12">
+        <div className="grid grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,45%)_minmax(0,55%)]">
           {/* Left: portrait. Light: framed photo card. Dark: melted into background */}
           <motion.div
             {...fadeUp(baseDelay)}
             className="relative h-72 lg:h-auto">
-            <div className="absolute inset-6 overflow-hidden rounded-2xl shadow-[0_18px_48px_rgba(0,0,0,0.16),0_2px_10px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.06] dark:inset-0 dark:rounded-none dark:shadow-none dark:ring-0">
+            <div className="absolute inset-6 overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.07)] ring-1 ring-black/[0.06] dark:shadow-none dark:ring-0">
               <Image
-                src="/nisha-2.jpg"
+                src="/image.jpg"
                 alt="Nisha Sardar, Full-Stack Developer"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center grayscale-[20%] dark:contrast-[1.05] dark:grayscale-[35%]"
+                className="object-cover object-center grayscale dark:contrast-[1.05] dark:grayscale-[35%]"
+              />
+
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-white/15 dark:hidden"
               />
 
               <div
@@ -114,10 +114,15 @@ const HomePage = () => {
                 className="from-background via-background/25 absolute inset-0 hidden bg-gradient-to-r via-10% to-transparent dark:block"
               />
             </div>
+
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-3.5 border border-[rgba(31,42,61,0.35)] dark:hidden"
+            />
           </motion.div>
 
-          {/* Right: copy, contact, favorites */}
-          <div className="nocturne font-nocturne flex flex-col items-center justify-center gap-6 px-6 py-10 text-center sm:px-10 lg:px-14 lg:py-12">
+          {/* Right: copy, contact */}
+          <div className="nocturne font-nocturne flex flex-col items-center justify-center gap-6 px-6 py-10 text-center sm:px-10 lg:px-14 lg:py-6">
             <motion.p
               {...fadeUp(baseDelay + 0.18)}
               className="border-nocturne-border text-nocturne-dim rounded-full border px-5 py-2 text-[10.5px] font-semibold tracking-[0.26em] whitespace-nowrap uppercase sm:text-[12px] sm:tracking-[0.3em]">
@@ -126,45 +131,20 @@ const HomePage = () => {
 
             <motion.p
               {...fadeUp(baseDelay + 0.3)}
-              className="text-nocturne-text w-full text-[19px] leading-[1.72] font-medium sm:text-[25px]">
-              If It had to strip away the noise of the outside world and{" "}
-              <em className="text-nocturne-accent italic">mirror</em> me, then
-              it would be better to say someone who maybe a less talkative but
-              invests her reflection on everything she touches. And thus her
-              journey turns into more than just breathing.
+              className="text-nocturne-text w-full text-[19px] leading-[1.7] font-medium sm:text-[25px]">
+              If I had to strip away the noise of the outside world and{" "}
+              <em className="text-nocturne-accent italic">reflect</em> on
+              myself, I would describe myself as someone socially reserved. But
+              that unique thoughtfulness is clearly reflected in every touch. I
+              care deeply about what I love.
             </motion.p>
 
-            <motion.div
+            <motion.p
               {...fadeUp(baseDelay + 0.36)}
-              className="mt-2 flex w-full flex-col items-center gap-4 pt-2">
-              <p className="text-nocturne-dim text-[11px] tracking-[0.3em] uppercase sm:text-[12px]">
-                My favorite ways to keep my soul vibrant and alive
-              </p>
-              <div className="relative flex w-full flex-wrap justify-center gap-x-6 gap-y-8 sm:gap-x-14">
-                <span
-                  aria-hidden="true"
-                  className="via-nocturne-line absolute top-[23px] right-[8%] left-[8%] hidden h-px bg-gradient-to-r from-transparent to-transparent sm:block"
-                />
-                {favorites.map((f, i) => (
-                  <div
-                    key={f.label}
-                    className="relative flex flex-col items-center">
-                    <span
-                      aria-hidden="true"
-                      className="text-base leading-none">
-                      {f.emoji}
-                    </span>
-                    <span
-                      style={{ animationDelay: `${i * 1.1}s` }}
-                      className="animate-twinkle bg-nocturne-dot mt-1 size-[7px] rounded-full shadow-[0_0_12px_3px_var(--nocturne-glow)]"
-                    />
-                    <span className="text-nocturne-dim mt-2.5 text-[9.5px] tracking-[0.16em] whitespace-nowrap uppercase sm:text-[11px]">
-                      {f.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+              className="text-nocturne-text w-full text-[19px] leading-[1.7] font-medium sm:text-[25px]">
+              And my favourite way to keep my soul alive is spending time with
+              myself.
+            </motion.p>
 
             <motion.div
               {...fadeUp(baseDelay + 0.42)}

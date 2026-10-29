@@ -1,13 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type CurtainIntroProps = {
   onComplete?: () => void;
 };
-
-const WELCOME = "Welcome";
 
 const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
   const shouldReduceMotion = useReducedMotion();
@@ -15,7 +14,6 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
   const [shouldShow, setShouldShow] = useState(false);
   const [contentExiting, setContentExiting] = useState(false);
   const [lifting, setLifting] = useState(false);
-  const [count, setCount] = useState(0);
   const timersRef = useRef<number[]>([]);
   const prevOverflowRef = useRef<string>("");
 
@@ -42,31 +40,16 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
     prevOverflowRef.current = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Counter 0 to 100 from 1.1s to 4.4s. Duration is 3.3s.
-    const counterStart = window.setTimeout(() => {
-      const start = Date.now();
-      const duration = 3300;
-      const tick = () => {
-        const elapsed = Date.now() - start;
-        const progress = Math.min(elapsed / duration, 1);
-        setCount(Math.round(progress * 100));
-        if (progress < 1) {
-          const id = window.setTimeout(tick, 16);
-          timersRef.current.push(id);
-        }
-      };
-      tick();
-    }, 1100);
-
-    const tContentExit = window.setTimeout(() => setContentExiting(true), 4400);
-    const tLift = window.setTimeout(() => setLifting(true), 5000);
+    // Content fades at 3.4s. The curtain lifts at 4s and finishes at 4.9s.
+    const tContentExit = window.setTimeout(() => setContentExiting(true), 3400);
+    const tLift = window.setTimeout(() => setLifting(true), 4000);
     const tDone = window.setTimeout(() => {
       setShouldShow(false);
       document.body.style.overflow = prevOverflowRef.current;
       onComplete?.();
-    }, 5900);
+    }, 4900);
 
-    timersRef.current.push(counterStart, tContentExit, tLift, tDone);
+    timersRef.current.push(tContentExit, tLift, tDone);
 
     return () => {
       timersRef.current.forEach(window.clearTimeout);
@@ -106,9 +89,17 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-background fixed inset-0 z-[100] flex items-center justify-center">
-            <p className="text-muted-foreground text-sm font-[var(--font-instrument-serif)] italic">
-              Welcome
+            className="bg-background fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 px-6 text-center">
+            <Image
+              src="/logo-mark.png"
+              alt="Nisha Sardar"
+              width={284}
+              height={205}
+              className="block h-[42px] w-auto dark:brightness-0 dark:invert"
+            />
+            <p className="text-muted-foreground max-w-sm text-sm leading-relaxed font-light">
+              You have reached my web space. Happy to have you here. Feel free
+              to explore! 🌐✨
             </p>
           </motion.div>
         : null}
@@ -142,70 +133,70 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
             className="border-glass-border pointer-events-none absolute inset-0 border-b shadow-[var(--glass-shadow)]"
           />
 
+          {/* Blinds slats. Shade panels cover the screen and slide out left and right at 0.9s. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-20">
+            {Array.from({ length: 8 }, (_, i) => (
+              <motion.div
+                key={`slat-${i}`}
+                initial={{ x: 0 }}
+                animate={{ x: i % 2 === 0 ? "-106%" : "106%" }}
+                transition={{
+                  delay: 0.9 + i * 0.05,
+                  duration: 0.55,
+                  ease: [0.7, 0, 0.3, 1],
+                }}
+                className="absolute bg-black/3 dark:bg-white/4"
+                style={{
+                  left: "-2%",
+                  width: "104%",
+                  top: `${i * 12.5}%`,
+                  height: "12.5%",
+                }}
+              />
+            ))}
+          </div>
+
           {/* Center content */}
           <motion.div
             animate={
               contentExiting ? { y: -16, opacity: 0 } : { y: 0, opacity: 1 }
             }
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="relative z-10 flex flex-col items-center text-center">
-            {/* NS logo. Same as Header. */}
+            className="relative z-10 flex flex-col items-center gap-5 text-center">
+            {/* NS mark. Same artwork as the Header logo. */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-              className="text-2xl font-[var(--font-instrument-serif)] font-normal italic">
-              <span className="text-muted-foreground/40">「</span>
-              NS
-              <span className="text-muted-foreground/40">」</span>
+              transition={{ delay: 0.95, duration: 0.5, ease: "easeOut" }}
+              className="flex items-center justify-center">
+              <Image
+                src="/logo-mark.png"
+                alt="Nisha Sardar"
+                width={284}
+                height={205}
+                priority
+                className="block h-[42px] w-auto dark:brightness-0 dark:invert"
+              />
             </motion.div>
 
-            {/* Welcome mask reveal. Italic serif needs extra slant breathing room. */}
-            <div className="mt-3 flex justify-center overflow-visible px-8 py-3">
-              {WELCOME.split("").map((letter, i) => (
-                <span
-                  key={`${letter}-${i}`}
-                  className="inline-block overflow-hidden px-[0.14em] pb-3">
-                  <motion.span
-                    initial={{ y: "100%" }}
-                    animate={{ y: "0%" }}
-                    transition={{
-                      delay: 0.45 + i * 0.045,
-                      duration: 0.5,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="inline-block bg-gradient-to-r from-sky-500 to-indigo-600 bg-clip-text pr-[0.14em] pb-[0.08em] text-5xl font-[var(--font-instrument-serif)] font-normal tracking-tight text-transparent italic sm:text-7xl dark:from-sky-400 dark:to-indigo-400">
-                    {letter}
-                  </motion.span>
-                </span>
-              ))}
+            {/* Progress bar. Starts with the slats at 0.9s and completes when the content starts fading at 3.4s. */}
+            <div className="bg-border h-0.5 w-[148px] overflow-hidden rounded-full">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.9, duration: 2.5, ease: "linear" }}
+                className="h-full w-full origin-left rounded-full bg-gradient-to-r from-sky-500 to-indigo-600"
+              />
             </div>
 
-            {/* Progress line. Glass pill track, matches site glass tokens. */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.2 }}
-              className="mt-8 flex flex-col items-center gap-2.5">
-              <div className="border-glass-border bg-glass h-1 w-64 overflow-hidden rounded-full border shadow-[var(--glass-shadow)] backdrop-blur-md">
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.1, duration: 3.3, ease: "linear" }}
-                  className="bg-foreground h-full w-full origin-left rounded-full"
-                />
-              </div>
-              <span className="text-muted-foreground font-mono text-xs tracking-widest tabular-nums">
-                {String(count).padStart(2, "0")}%
-              </span>
-            </motion.div>
-
-            {/* Subtitle. Same font-light zinc-400/muted style as hero tagline. */}
+            {/* Subtitle. Same welcome note, same font-light muted style as before. */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
-              className="text-muted-foreground mt-3 max-w-sm text-sm leading-relaxed font-light">
+              transition={{ delay: 1.35, duration: 0.6, ease: "easeOut" }}
+              className="text-muted-foreground max-w-sm text-sm leading-relaxed font-light">
               You have reached my web space. Happy to have you here. Feel free
               to explore! 🌐✨
             </motion.p>
@@ -231,7 +222,7 @@ const CurtainIntro = ({ onComplete }: CurtainIntroProps) => {
           <button
             type="button"
             onClick={handleSkip}
-            className="border-glass-border bg-glass text-muted-foreground hover:bg-glass hover:text-foreground focus-visible:ring-ring absolute right-6 bottom-6 rounded-full border px-4 py-2 text-xs shadow-[var(--glass-shadow)] backdrop-blur-md transition-colors focus-visible:ring-2 focus-visible:outline-none">
+            className="border-glass-border bg-glass text-muted-foreground hover:bg-glass hover:text-foreground focus-visible:ring-ring absolute right-6 bottom-6 z-30 rounded-full border px-4 py-2 text-xs shadow-[var(--glass-shadow)] backdrop-blur-md transition-colors focus-visible:ring-2 focus-visible:outline-none">
             Skip, Esc
           </button>
         </motion.div>

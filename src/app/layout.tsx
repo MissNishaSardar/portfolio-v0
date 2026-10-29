@@ -4,8 +4,8 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
 import {
-  cormorant,
   dancingScript,
+  fraunces,
   geistMono,
   instrumentSerif,
   inter,
@@ -21,7 +21,7 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} ${cormorant.variable} ${instrumentSerif.variable} antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${dancingScript.variable} ${instrumentSerif.variable} ${fraunces.variable} antialiased`}
       suppressHydrationWarning>
       <head>
         <script

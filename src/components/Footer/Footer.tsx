@@ -8,17 +8,15 @@ const Footer = () => {
       className="border-glass-border bg-glass/80 supports-[backdrop-filter]:bg-glass/60 relative border-t shadow-[var(--glass-shadow)] backdrop-blur-md"
       aria-label="Site footer">
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-2 px-6 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-        {/* Left: ⌜NS⌟ · © year · India */}
+        {/* Left: NS logo mark · © year */}
         <div className="flex shrink-0 items-center gap-2 text-sm">
-          <span
-            className="text-base font-[var(--font-instrument-serif)] font-normal italic"
-            role="img"
-            aria-label="Nisha Sardar">
-            <span className="text-muted-foreground/40">「</span>
-            NS
-            <span className="text-muted-foreground/40">」</span>
-          </span>
-          <span className="sr-only">Nisha Sardar</span>
+          <Image
+            src="/logo-mark.png"
+            alt="Nisha Sardar"
+            width={284}
+            height={205}
+            className="h-6 w-auto dark:brightness-0 dark:invert"
+          />
           <span
             className="text-muted-foreground/30"
             aria-hidden="true">

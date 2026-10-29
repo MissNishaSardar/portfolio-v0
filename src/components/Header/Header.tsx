@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,12 +17,15 @@ const Header = () => {
       aria-label="app-header">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link href={"/"}>
-          <h1
-            className="text-2xl font-[var(--font-instrument-serif)] font-normal italic"
-            aria-label="App Name">
-            <span className="text-muted-foreground/40">「</span>
-            NS
-            <span className="text-muted-foreground/40">」</span>
+          <h1>
+            <Image
+              src="/logo-mark.png"
+              alt="Nisha Sardar"
+              width={284}
+              height={205}
+              priority
+              className="block h-9 w-auto dark:brightness-0 dark:invert"
+            />
           </h1>
         </Link>
 

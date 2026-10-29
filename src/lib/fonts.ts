@@ -1,6 +1,6 @@
 import {
-  Cormorant_Garamond,
   Dancing_Script,
+  Fraunces,
   Geist_Mono,
   Instrument_Serif,
   Inter,
@@ -32,10 +32,10 @@ export const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-export const cormorant = Cormorant_Garamond({
+export const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
-  variable: "--font-cormorant",
+  variable: "--font-fraunces",
 });
