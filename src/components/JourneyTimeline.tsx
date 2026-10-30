@@ -13,7 +13,7 @@ const JourneyTimeline = () => {
     <ol
       aria-label="Personal journey"
       className="relative flex w-full flex-col gap-5">
-      {journey.map((stop) => (
+      {[...journey].reverse().map((stop) => (
         <li
           key={stop.eyebrow + stop.title}
           className="relative flex gap-4">

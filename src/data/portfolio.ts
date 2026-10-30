@@ -166,7 +166,7 @@ export const journey: JourneyMilestone[] = [
   {
     eyebrow: "2022",
     title: "Another world on the side",
-    text: "Zoology entered the picture at WBSU. A close look at how animals are formed, how they behave, and how they change over time.",
+    text: "At WBSU, zoology joined the journey. A close look at how animals are formed, how they behave, and how they change over time.",
     tags: ["Zoology", "WBSU"],
   },
   {
@@ -180,12 +180,6 @@ export const journey: JourneyMilestone[] = [
     title: "Learning by making things",
     text: "Turning what has been learned into finished, working sites. Each practice project teaches something new about solving problems people actually have.",
     tags: ["Practice", "Shipping"],
-  },
-  {
-    eyebrow: "Next",
-    title: "Let's build something good",
-    text: "More websites that are fast and easy for everyone to use. Got a role in mind or thoughts on the work? I'd love to hear it.",
-    tags: ["Accessibility", "Growth"],
   },
 ];
 
